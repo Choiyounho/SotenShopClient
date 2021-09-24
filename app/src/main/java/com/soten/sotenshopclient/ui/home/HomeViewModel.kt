@@ -1,13 +1,29 @@
 package com.soten.sotenshopclient.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.soten.sotenshopclient.data.api.ShoppingApi
+import com.soten.sotenshopclient.domain.response.ProductResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val shoppingApi: ShoppingApi
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _productListLiveData = MutableLiveData<List<ProductResponse>>()
+    val productListLiveData get() = _productListLiveData
+
+    init {
+        fetch()
     }
-    val text: LiveData<String> = _text
+
+    fun fetch() = viewModelScope.launch {
+        _productListLiveData.value = shoppingApi.getAllProduct().body()?.data ?: throw IllegalArgumentException("실패")
+    }
+
 }

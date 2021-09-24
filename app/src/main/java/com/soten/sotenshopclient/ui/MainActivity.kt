@@ -1,20 +1,21 @@
 package com.soten.sotenshopclient.ui
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.soten.sotenshopclient.BuildConfig
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.ActivityMainBinding
+import com.soten.sotenshopclient.ui.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            binding.navView.isVisible = destination.id != R.id.navigation_category
+            binding.navView.isVisible = destination.id != R.id.navigationCategoryFragment
         }
     }
 

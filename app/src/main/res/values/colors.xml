@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#FC6828</color>
+    <color name="colorStatusBar">#D2D3D8</color>
+    <color name="colorTextView">#EDEEEF</color>
 </resources>

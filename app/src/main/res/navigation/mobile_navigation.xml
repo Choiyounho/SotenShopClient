@@ -3,25 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigationHomeFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigationHomeFragment"
         android:name="com.soten.sotenshopclient.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_category"
+        android:id="@+id/navigationCategoryFragment"
         android:name="com.soten.sotenshopclient.ui.category.CategoryFragment"
         tools:layout="@layout/fragment_category" />
 
     <fragment
-        android:id="@+id/navigation_like"
+        android:id="@+id/navigationLikeFragment"
         android:name="com.soten.sotenshopclient.ui.like.LikeFragment"
         tools:layout="@layout/fragment_like" />
 
     <fragment
-        android:id="@+id/navigation_basket"
+        android:id="@+id/navigationBasketFragment"
         android:name="com.soten.sotenshopclient.ui.basket.BasketFragment"
         tools:layout="@layout/fragment_basket" />
+
+    <fragment
+        android:id="@+id/navigationSettingFragment"
+        android:name="com.soten.sotenshopclient.ui.SettingFragment"
+        tools:layout="@layout/fragment_setting" />
+
 </navigation>
