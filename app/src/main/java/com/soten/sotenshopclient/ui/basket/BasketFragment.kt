@@ -1,15 +1,15 @@
-package com.soten.sotenshopclient.ui.home
+package com.soten.sotenshopclient.ui.basket
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.soten.sotenshopclient.databinding.FragmentHomeBinding
+import com.soten.sotenshopclient.databinding.FragmentBasketBinding
 
-class HomeFragment : Fragment() {
+class BasketFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentBasketBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentBasketBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,4 +25,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -3,6 +3,7 @@
     package="com.soten.sotenshopclient">
 
     <application
+        android:name=".ShoppingApplication"
         android:allowBackup="false"
         android:icon="@drawable/ic_soten_shop"
         android:label="@string/app_name"

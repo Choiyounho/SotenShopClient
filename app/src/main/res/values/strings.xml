@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">SotenShopClient</string>
+    <string name="app_name">SotenShop</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_category">Category</string>
+    <string name="title_notifications">Like</string>
+    <string name="title_basket">Basket</string>
+    <string name="title_like">Like</string>
 </resources>

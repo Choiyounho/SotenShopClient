@@ -8,18 +8,20 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.soten.sotenshopclient.ui.home.HomeFragment"
-        android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.soten.sotenshopclient.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_category"
+        android:name="com.soten.sotenshopclient.ui.category.CategoryFragment"
+        tools:layout="@layout/fragment_category" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.soten.sotenshopclient.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_like"
+        android:name="com.soten.sotenshopclient.ui.like.LikeFragment"
+        tools:layout="@layout/fragment_like" />
+
+    <fragment
+        android:id="@+id/navigation_basket"
+        android:name="com.soten.sotenshopclient.ui.basket.BasketFragment"
+        tools:layout="@layout/fragment_basket" />
 </navigation>
