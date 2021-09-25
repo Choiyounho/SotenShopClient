@@ -22,4 +22,5 @@ ext {
     roomVersion = '2.3.0'
     hiltVersion = '2.38.1'
     okhttpVersion = '4.9.1'
+    pagingVersion = '3.0.1'
 }
