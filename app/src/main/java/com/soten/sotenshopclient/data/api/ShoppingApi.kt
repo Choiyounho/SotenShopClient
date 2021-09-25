@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface ShoppingApi {
 
-    @GET("productss")
+    @GET("products/all")
     suspend fun getAllProduct(): Response<ApiResponse<List<ProductResponse>>>
 
 }

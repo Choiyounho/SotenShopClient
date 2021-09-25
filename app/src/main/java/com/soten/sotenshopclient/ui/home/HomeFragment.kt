@@ -1,24 +1,28 @@
 package com.soten.sotenshopclient.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.soten.sotenshopclient.R
+import com.soten.sotenshopclient.adapater.ProductAdapter
 import com.soten.sotenshopclient.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel = viewModels<HomeViewModel>()
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel = viewModels<HomeViewModel>()
+
+    private val adapter by lazy { ProductAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,9 +35,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getTest()
 
         initViews()
+        bindView()
+        observeData()
+    }
+
+    private fun bindView() {
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
     }
 
     private fun initViews() {
@@ -42,13 +52,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getTest() {
+    private fun observeData() {
         viewModel.value.productListLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                Log.d(TAG, "값 : $it")
-            } else {
-                Log.d(TAG, "없음")
-            }
+            adapter.submitList(it)
         }
     }
 

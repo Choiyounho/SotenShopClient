@@ -7,12 +7,11 @@ import com.soten.sotenshopclient.data.api.ShoppingApi
 import com.soten.sotenshopclient.domain.response.ProductResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val shoppingApi: ShoppingApi
+    private val shoppingApi: ShoppingApi,
 ) : ViewModel() {
 
     private val _productListLiveData = MutableLiveData<List<ProductResponse>>()
