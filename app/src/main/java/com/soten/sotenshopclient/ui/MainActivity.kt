@@ -1,6 +1,7 @@
 package com.soten.sotenshopclient.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -28,8 +29,16 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            binding.navView.isVisible = destination.id != R.id.navigationCategoryFragment
+            when (destination.id) {
+                R.id.navigationCategoryFragment -> hideNavView()
+                R.id.navigationSignInAndSignUpFragment -> hideNavView()
+            }
+
         }
+    }
+
+    private fun hideNavView() {
+        binding.navView.visibility = View.GONE
     }
 
 }

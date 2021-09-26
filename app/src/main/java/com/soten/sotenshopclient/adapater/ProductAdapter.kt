@@ -6,12 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.RoundedCornersTransformation
-import coil.transform.Transformation
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.ItemProductBinding
-import com.soten.sotenshopclient.domain.response.ProductResponse
-import kotlin.math.round
+import com.soten.sotenshopclient.data.response.product.ProductResponse
 
 class ProductAdapter :
     ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(differ) {

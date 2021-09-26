@@ -12,4 +12,13 @@
     <string name="see_all">See all</string>
     <string name="recommended">Recommended</string>
     <string name="login_comment">로그인 후 상품을 구매하세요</string>
+    <string name="password">비밀번호</string>
+    <string name="e_mail">E-mail</string>
+    <string name="sotenshop_login">SotenShop Login</string>
+    <string name="login">SignIn</string>
+    <string name="signup">SignUp</string>
+    <string name="name">이름</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_account">Don’t have an account? </string>
+    <string name="logo_text">"SotenShop SignUp"</string>
 </resources>

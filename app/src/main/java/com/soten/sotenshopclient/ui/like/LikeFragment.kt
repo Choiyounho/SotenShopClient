@@ -1,29 +1,13 @@
 package com.soten.sotenshopclient.ui.like
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.soten.sotenshopclient.databinding.FragmentLikeBinding
+import com.soten.sotenshopclient.ui.base.BaseFragment
 
-class LikeFragment : Fragment() {
+class LikeFragment : BaseFragment<FragmentLikeBinding>() {
 
-    private var _binding: FragmentLikeBinding? = null
+    override var _binding: FragmentLikeBinding? = null
     private val binding get() = _binding!!
+    override fun getViewBinding() = FragmentLikeBinding.inflate(layoutInflater)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentLikeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -1,24 +1,21 @@
 package com.soten.sotenshopclient.ui.setting
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.FragmentSettingBinding
+import com.soten.sotenshopclient.ui.base.BaseFragment
 
-class SettingFragment : Fragment() {
+class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
-    private var _binding: FragmentSettingBinding? = null
+    override var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
+    override fun getViewBinding() = FragmentSettingBinding.inflate(layoutInflater)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun initViews() = with(binding) {
+        loginContainer.setOnClickListener {
+            // TODO 로그인 하지 않았을 시 클릭하면 로그인창
+            findNavController().navigate(R.id.navigationSignInAndSignUpFragment)
+        }
     }
 
 }
