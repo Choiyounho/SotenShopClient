@@ -8,9 +8,11 @@
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/drawable/ic_logo.xml" value="0.32395833333333335" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_basket.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_category.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_like.xml" value="0.19610507246376813" />
-        <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_setting.xml" value="0.18" />
+        <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
+        <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/fragment_sign_in_and_sign_up.xml" value="0.182518115942029" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/item_banner.xml" value="0.296195652173913" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/item_main_header.xml" value="0.33" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/layout/item_product.xml" value="0.33" />

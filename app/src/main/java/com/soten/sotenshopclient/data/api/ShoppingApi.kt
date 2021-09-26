@@ -10,4 +10,6 @@ interface ShoppingApi {
     @GET("products/all")
     suspend fun getAllProduct(): Response<ApiResponse<List<ProductResponse>>>
 
+
+
 }

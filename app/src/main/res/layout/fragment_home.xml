@@ -110,5 +110,8 @@
                 android:layout_marginHorizontal="10dp"
                 tools:listitem="@layout/item_product" />
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

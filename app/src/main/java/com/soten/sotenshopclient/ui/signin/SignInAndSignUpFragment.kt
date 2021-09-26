@@ -1,15 +1,15 @@
-package com.soten.sotenshopclient.ui
+package com.soten.sotenshopclient.ui.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.soten.sotenshopclient.databinding.FragmentSettingBinding
+import com.soten.sotenshopclient.databinding.FragmentSignInAndSignUpBinding
 
-class SettingFragment : Fragment() {
+class SignInAndSignUpFragment : Fragment() {
 
-    private var _binding: FragmentSettingBinding? = null
+    private var _binding: FragmentSignInAndSignUpBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,8 +17,10 @@ class SettingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(inflater, container, false)
+        _binding = FragmentSignInAndSignUpBinding.inflate(layoutInflater)
         return binding.root
     }
+
+
 
 }

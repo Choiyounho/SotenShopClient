@@ -11,4 +11,5 @@
     <string name="category">Categories</string>
     <string name="see_all">See all</string>
     <string name="recommended">Recommended</string>
+    <string name="login_comment">로그인 후 상품을 구매하세요</string>
 </resources>

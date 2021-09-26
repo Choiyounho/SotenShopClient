@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigationSettingFragment"
-        android:name="com.soten.sotenshopclient.ui.SettingFragment"
+        android:name="com.soten.sotenshopclient.ui.setting.SettingFragment"
         tools:layout="@layout/fragment_setting" />
 
 </navigation>
