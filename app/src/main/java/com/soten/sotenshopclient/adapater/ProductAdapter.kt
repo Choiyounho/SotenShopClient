@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
+import coil.transform.Transformation
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 import com.soten.sotenshopclient.domain.response.ProductResponse
+import kotlin.math.round
 
 class ProductAdapter :
     ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(differ) {
@@ -27,15 +30,16 @@ class ProductAdapter :
         )
     }
 
-    inner class ProductViewHolder(private val binding: ItemProductBinding) :
+    class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(productResponse: ProductResponse) {
-            binding.productImage.load(R.drawable.ic_soten_shop)
+            binding.productImage.load("https://i.stack.imgur.com/GsDIl.jpg") {
+                placeholder(R.drawable.ic_soten_shop)
+            }
             binding.productTitle.text = productResponse.name
             binding.productPrice.text = productResponse.price.toString()
         }
-
     }
 
     companion object {
@@ -44,7 +48,6 @@ class ProductAdapter :
                 oldItem: ProductResponse,
                 newItem: ProductResponse,
             ) = oldItem.id == newItem.id
-
 
             override fun areContentsTheSame(
                 oldItem: ProductResponse,

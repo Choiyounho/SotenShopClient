@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.soten.sotenshopclient.data.api.ShoppingApi
 import com.soten.sotenshopclient.domain.response.ProductResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,12 +19,22 @@ class HomeViewModel @Inject constructor(
     private val _productListLiveData = MutableLiveData<List<ProductResponse>>()
     val productListLiveData get() = _productListLiveData
 
+    private val _bannerCurrentPosition = MutableLiveData(0)
+    val bannerCurrentPosition get() = _bannerCurrentPosition
+
     init {
         fetch()
     }
 
     fun fetch() = viewModelScope.launch {
-        _productListLiveData.value = shoppingApi.getAllProduct().body()?.data ?: throw IllegalArgumentException("실패")
+        _productListLiveData.value =
+            shoppingApi.getAllProduct().body()?.data ?: throw IllegalArgumentException("실패")
     }
+
+    fun setBannerCurrentPosition(position: Int) {
+        _bannerCurrentPosition.value = position
+    }
+
+    fun getBannerCurrentPosition() = _bannerCurrentPosition.value
 
 }

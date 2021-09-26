@@ -30,11 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/background_bottom_navigation"
         app:elevation="0dp"
-        app:labelVisibilityMode="unlabeled"
         app:itemRippleColor="@null"
+        app:labelVisibilityMode="unlabeled"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:menu="@menu/bottom_nav_menu" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

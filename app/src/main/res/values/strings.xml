@@ -9,4 +9,6 @@
     <string name="search_hint">Search for tshirts, jeans, shorts, jackets</string>
     <string name="please_login">로그인 하세요</string>
     <string name="category">Categories</string>
+    <string name="see_all">See all</string>
+    <string name="recommended">Recommended</string>
 </resources>
