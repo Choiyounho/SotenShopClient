@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sdw01/Desktop/SotenShopClient/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.2515625" />
+        <entry key="..\:/Users/sdw01/Desktop/SotenShopClient/app/src/main/res/layout/fragment_category.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/sdw01/Desktop/SotenShopClient/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/sdw01/Desktop/SotenShopClient/app/src/main/res/layout/fragment_setting.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/sdw01/Desktop/SotenShopClient/app/src/main/res/layout/item_product.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/drawable/background_bottom_navigation.xml" value="0.2046875" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/drawable/background_search_text_view.xml" value="0.21203703703703702" />
         <entry key="..\:/Users/younh/Desktop/SotenShopClient/app/src/main/res/drawable/ic_logo.xml" value="0.32395833333333335" />
