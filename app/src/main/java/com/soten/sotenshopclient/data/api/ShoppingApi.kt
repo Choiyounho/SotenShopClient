@@ -1,12 +1,13 @@
 package com.soten.sotenshopclient.data.api
 
+import com.soten.sotenshopclient.data.request.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.auth.SignUpRequest
+import com.soten.sotenshopclient.data.response.auth.SignInResponse
 import com.soten.sotenshopclient.data.response.common.ApiResponse
 import com.soten.sotenshopclient.data.response.product.ProductResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ShoppingApi {
 
@@ -15,5 +16,8 @@ interface ShoppingApi {
 
     @POST("sign-up")
     suspend fun signUp(@Body signUpRequest: SignUpRequest): ApiResponse<Void>
+
+    @POST("sign-in")
+    suspend fun signIn(@Body signInRequest: SignInRequest): ApiResponse<SignInResponse>
 
 }

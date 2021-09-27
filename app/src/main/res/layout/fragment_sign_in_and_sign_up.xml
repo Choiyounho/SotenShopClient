@@ -64,6 +64,7 @@
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="textPassword"
             android:background="@drawable/background_text_input_layout" />
     </com.google.android.material.textfield.TextInputLayout>
 

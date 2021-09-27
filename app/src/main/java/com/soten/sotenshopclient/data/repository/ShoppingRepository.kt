@@ -9,6 +9,6 @@ interface ShoppingRepository {
 
     suspend fun signUp(signUpRequest: SignUpRequest): ApiResponse<Void>
 
-//    suspend fun signIn(signInRequest: SignInRequest): ApiResponse<SignInResponse>
+    suspend fun signIn(signInRequest: SignInRequest): ApiResponse<SignInResponse>
 
 }

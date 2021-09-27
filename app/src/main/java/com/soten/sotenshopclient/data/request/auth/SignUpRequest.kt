@@ -12,9 +12,9 @@ data class SignUpRequest(
         email.isNullOrBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
     fun isNotValidPassword() =
-        password.isNullOrBlank() || password.length !in 8..20
+        password.isNullOrBlank() || password.length !in 4..20
 
     fun isNotValidName() =
-        name.isNullOrBlank() || name.length !in 2..20
+        name.isNullOrBlank() || name.length !in 2..10
 
 }

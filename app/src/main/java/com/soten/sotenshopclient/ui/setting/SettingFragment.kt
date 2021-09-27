@@ -12,7 +12,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     override fun getViewBinding() = FragmentSettingBinding.inflate(layoutInflater)
 
     override fun initViews() = with(binding) {
-        loginContainer.setOnClickListener {
+        loginInfoComment1.setOnClickListener {
             // TODO 로그인 하지 않았을 시 클릭하면 로그인창
             findNavController().navigate(R.id.navigationSignInAndSignUpFragment)
         }

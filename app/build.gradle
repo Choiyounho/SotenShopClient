@@ -21,6 +21,7 @@ android {
 
         buildConfigField "String", "IMP_KEY", properties['imp_key']
         buildConfigField "String", "IMP_SECRET", properties['imp_secret']
+        buildConfigField "String", "MY_IP_ADDRESS", properties['my_ip_address']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

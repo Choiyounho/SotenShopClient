@@ -24,8 +24,7 @@
             android:text="@string/please_login"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/loginInfoComment2"
@@ -34,8 +33,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="@string/login_comment"
-            android:textColor="@color/black"
-            android:visibility="gone" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/welcomeText"
@@ -46,6 +44,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:visibility="gone"
             tools:text="최윤호님 환영합니다" />
     </LinearLayout>
 
@@ -82,5 +81,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/cardImage"
         tools:text="SotenCard" />
+
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/background_text_input_layout"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

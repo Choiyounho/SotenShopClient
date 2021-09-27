@@ -14,4 +14,10 @@ class SharedPreferenceManager @Inject constructor(
     fun putString(key: String, value: String) =
         sharedPreferences.edit { putString(key, value) }
 
+    fun getLong(key: String): Long? =
+        sharedPreferences.getLong(key, 0)
+
+    fun putLong(key: String, value: Long) =
+        sharedPreferences.edit { putLong(key, value) }
+
 }

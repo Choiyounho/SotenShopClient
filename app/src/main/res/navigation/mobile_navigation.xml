@@ -29,9 +29,17 @@
         android:id="@+id/navigationSettingFragment"
         android:name="com.soten.sotenshopclient.ui.setting.SettingFragment"
         tools:layout="@layout/fragment_setting" />
+
     <fragment
         android:id="@+id/navigationSignInAndSignUpFragment"
         android:name="com.soten.sotenshopclient.ui.setting.auth.SignInAndSignUpFragment"
-        tools:layout="@layout/fragment_sign_in_and_sign_up" />
+        tools:layout="@layout/fragment_sign_in_and_sign_up">
+
+        <action
+            android:id="@+id/toHomeFragment"
+            app:destination="@id/navigationHomeFragment"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

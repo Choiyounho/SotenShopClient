@@ -5,6 +5,6 @@ enum class UserState {
     SIGN_IN,
     SIGN_UP,
     SUCCESS,
-    FAIL
+    FAIL,
 
 }
