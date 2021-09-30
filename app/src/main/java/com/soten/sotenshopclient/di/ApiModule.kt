@@ -1,5 +1,7 @@
 package com.soten.sotenshopclient.di
 
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.soten.sotenshopclient.BuildConfig
 import com.soten.sotenshopclient.data.api.IamPortApi
 import com.soten.sotenshopclient.data.api.ShoppingApi
@@ -23,10 +25,7 @@ object ApiModule {
     fun provideShoppingApi(): ShoppingApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(
-                OkHttpClient.Builder()
-                    .build()
-            )
+            .client(provideOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ShoppingApi::class.java)
@@ -45,5 +44,16 @@ object ApiModule {
             .build()
             .create(IamPortApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseStorage() = Firebase.storage
 
 }
