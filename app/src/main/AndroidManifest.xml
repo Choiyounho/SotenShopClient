@@ -3,6 +3,8 @@
     package="com.soten.sotenshopclient">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".ShoppingApplication"
@@ -11,8 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_soten_shop"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.SotenShopClient">
+        android:theme="@style/Theme.SotenShopClient"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
