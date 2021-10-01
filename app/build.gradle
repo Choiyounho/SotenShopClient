@@ -65,6 +65,7 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil:$coilVersion"
+    implementation("io.coil-kt:coil-gif:$coilVersion")
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
