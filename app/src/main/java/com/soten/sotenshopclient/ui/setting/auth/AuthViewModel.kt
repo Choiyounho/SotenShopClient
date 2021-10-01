@@ -3,6 +3,9 @@ package com.soten.sotenshopclient.ui.setting.auth
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_EMAIL
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_NAME
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_PASSWORD
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.ShoppingRepository
 import com.soten.sotenshopclient.data.request.auth.SignInRequest
@@ -15,17 +18,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val preferenceManager: SharedPreferenceManager,
     private val shoppingRepository: ShoppingRepository,
+    private val sharedPreferenceManager: SharedPreferenceManager
 ) : ViewModel() {
 
-    private val _userStateLiveData = MutableLiveData(UserState.SIGN_IN)
+    private val _userStateLiveData = MutableLiveData(UserState.NORMAL)
     val userStateLiveData get() = _userStateLiveData
 
-    private val _authNotice = MutableLiveData<String>()
+    private val _authNotice = MutableLiveData(PLZ_SIGN_IN)
     val authNotice get() = _authNotice
 
-    fun getUserState() = userStateLiveData.value
+    init {
+        signIn(
+            SignInRequest(
+                sharedPreferenceManager.getString(KEY_USER_EMAIL),
+                sharedPreferenceManager.getString(KEY_USER_PASSWORD)
+            )
+        )
+    }
 
     fun setSignUpState() {
         _userStateLiveData.value = UserState.SIGN_UP
@@ -47,6 +57,7 @@ class AuthViewModel @Inject constructor(
                 _authNotice.value = SUCCESS_LOGIN
             } else {
                 _userStateLiveData.value = UserState.FAIL
+                _authNotice.value = request.message
             }
         } catch (e: Exception) {
             _userStateLiveData.value = UserState.FAIL
@@ -66,7 +77,7 @@ class AuthViewModel @Inject constructor(
                 _authNotice.value = SUCCESS_LOGIN
                 _userStateLiveData.value = UserState.SUCCESS
                 val response = request.data
-                saveUserInfo(response)
+                saveUserInfo(response, signInRequest)
             } else {
                 _userStateLiveData.value = UserState.FAIL
             }
@@ -76,11 +87,14 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    private fun saveUserInfo(response: SignInResponse) {
-        putString(KEY_TOKEN, response.token)
-        putString(KEY_REFRESH_TOKEN, response.refreshToken)
-        putString(KEY_USER_NAME, response.userName)
-        putLong(KEY_USER_ID, response.userId)
+    fun signOut() {
+        _userStateLiveData.value = UserState.NORMAL
+        sharedPreferenceManager.resetUserInfo()
+    }
+
+    private fun saveUserInfo(response: SignInResponse, signInRequest: SignInRequest) {
+        sharedPreferenceManager.saveUserInfo(response, signInRequest)
+        _userStateLiveData.value = UserState.SUCCESS
     }
 
     private fun isNotValidSignUp(signUpRequest: SignUpRequest) =
@@ -103,26 +117,18 @@ class AuthViewModel @Inject constructor(
             else -> isAuthNotice(IS_NOT_VALID).not()
         }
 
-    private fun putString(key: String, value: String) {
-        preferenceManager.putString(key, value)
-    }
-
-    private fun putLong(key: String, value: Long) {
-        preferenceManager.putLong(key, value)
+    fun getUserName(): String? {
+        return sharedPreferenceManager.getString(KEY_USER_NAME)
     }
 
     companion object {
+        private const val PLZ_SIGN_IN = "로그인 해주세요"
         private const val IS_NOT_VALID_EMAIL = "이메일 형식이 올바르지 않습니다."
         private const val IS_NOT_VALID_PASSWORD = "비밀번호는 4자 이상 20자 이하로 입력해주세요."
         private const val IS_NOT_VALID_NAME = "이름은 2자 이상 10자 이하로 입력해주세요."
         private const val IS_NOT_VALID = "알수 없는 오류 발생 잠시 후 다시 시도해주세요."
 
         private const val SUCCESS_LOGIN = "로그인 성공"
-
-        private const val KEY_TOKEN = "KEY_TOKEN"
-        private const val KEY_REFRESH_TOKEN = "KEY_REFRESH_TOKEN"
-        private const val KEY_USER_NAME = "KEY_USER_NAME"
-        private const val KEY_USER_ID = "KEY_USER_ID"
     }
 
 }

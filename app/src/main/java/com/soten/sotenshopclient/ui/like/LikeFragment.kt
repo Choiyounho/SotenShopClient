@@ -7,7 +7,7 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
 
     override var _binding: FragmentLikeBinding? = null
     private val binding get() = _binding!!
-    override fun getViewBinding() = FragmentLikeBinding.inflate(layoutInflater)
+    override fun getDataBinding() = FragmentLikeBinding.inflate(layoutInflater)
 
 
 }

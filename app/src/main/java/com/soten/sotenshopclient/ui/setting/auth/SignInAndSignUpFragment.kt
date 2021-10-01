@@ -17,7 +17,7 @@ class SignInAndSignUpFragment : BaseFragment<FragmentSignInAndSignUpBinding>() {
 
     override var _binding: FragmentSignInAndSignUpBinding? = null
     private val binding get() = _binding!!
-    override fun getViewBinding() = FragmentSignInAndSignUpBinding.inflate(layoutInflater)
+    override fun getDataBinding() = FragmentSignInAndSignUpBinding.inflate(layoutInflater)
 
     private val viewModel by activityViewModels<AuthViewModel>()
 
@@ -31,21 +31,20 @@ class SignInAndSignUpFragment : BaseFragment<FragmentSignInAndSignUpBinding>() {
         }
 
         signInAndSignUpButton.setOnClickListener {
-            if (viewModel.getUserState() == UserState.SIGN_UP) {
+            if (signInAndSignUpButton.text == "SignIn") {
+                val signInRequest = SignInRequest(
+                    email = binding.emailEditText.text.toString(),
+                    password = binding.passwordEditText.text.toString(),
+                )
+                viewModel.signIn(signInRequest)
+            } else {
                 val signUpRequest = SignUpRequest(
                     email = binding.emailEditText.text.toString(),
                     password = binding.passwordEditText.text.toString(),
                     name = nameEditText.text.toString(),
                 )
                 viewModel.signUp(signUpRequest)
-            } else {
-                val signInRequest = SignInRequest(
-                    email = binding.emailEditText.text.toString(),
-                    password = binding.passwordEditText.text.toString(),
-                )
-                viewModel.signIn(signInRequest)
             }
-
         }
 
     }
@@ -53,11 +52,15 @@ class SignInAndSignUpFragment : BaseFragment<FragmentSignInAndSignUpBinding>() {
     override fun observeData() {
         viewModel.userStateLiveData.observe(viewLifecycleOwner) { state ->
             when (state) {
+                UserState.NORMAL -> Unit
                 UserState.SUCCESS -> {
                     Toast.makeText(context, viewModel.getAuthNotice(), Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.toHomeFragment)
                 }
-                UserState.FAIL -> Toast.makeText(context, viewModel.getAuthNotice(), Toast.LENGTH_SHORT).show()
+                UserState.FAIL -> Toast.makeText(context,
+                    viewModel.getAuthNotice(),
+                    Toast.LENGTH_SHORT).show()
+                else -> Unit
             }
         }
     }

@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
+    override fun getDataBinding() = FragmentHomeBinding.inflate(layoutInflater)
 
     private val viewModel = viewModels<HomeViewModel>()
 
@@ -71,7 +71,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         private const val TAG = "HomeFragment"
 
         private const val BANNER_AUTO_SCROLL_TIME = 3000L
-        private const val BANNER_LIST_SIZE = 3
         private const val NEXT_POSITION = 1
     }
 

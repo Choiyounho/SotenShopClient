@@ -7,7 +7,7 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
 
     override var _binding:FragmentBasketBinding? = null
     private val binding get() = _binding!!
-    override fun getViewBinding() = FragmentBasketBinding.inflate(layoutInflater)
+    override fun getDataBinding() = FragmentBasketBinding.inflate(layoutInflater)
 
 
 

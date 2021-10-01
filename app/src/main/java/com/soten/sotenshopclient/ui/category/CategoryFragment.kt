@@ -7,7 +7,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override var _binding: FragmentCategoryBinding? = null
 
-    override fun getViewBinding() = FragmentCategoryBinding.inflate(layoutInflater)
+    override fun getDataBinding() = FragmentCategoryBinding.inflate(layoutInflater)
 
 
 }
