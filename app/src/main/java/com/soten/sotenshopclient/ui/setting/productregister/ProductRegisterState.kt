@@ -1,3 +1,10 @@
 package com.soten.sotenshopclient.ui.setting.productregister
 
-sealed class ProductRegisterState
+enum class ProductRegisterState {
+
+    NORMAL,
+    LOADING,
+    SUCCESS,
+    FAIL
+
+}
