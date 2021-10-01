@@ -1,6 +1,10 @@
 package com.soten.sotenshopclient.di
 
+import com.google.firebase.storage.FirebaseStorage
 import com.soten.sotenshopclient.data.api.ShoppingApi
+import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
+import com.soten.sotenshopclient.data.repository.FirebaseRepository
+import com.soten.sotenshopclient.data.repository.FirebaseRepositoryImpl
 import com.soten.sotenshopclient.data.repository.ShoppingRepository
 import com.soten.sotenshopclient.data.repository.ShoppingRepositoryImpl
 import dagger.Module
@@ -17,6 +21,15 @@ object RepositoryModule {
     @Singleton
     fun provideShoppingRepository(shoppingApi: ShoppingApi): ShoppingRepository {
         return ShoppingRepositoryImpl(shoppingApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRepository(
+        storage: FirebaseStorage,
+        sharedPreferenceManager: SharedPreferenceManager
+    ): FirebaseRepository {
+        return FirebaseRepositoryImpl(storage, sharedPreferenceManager)
     }
 
 }
