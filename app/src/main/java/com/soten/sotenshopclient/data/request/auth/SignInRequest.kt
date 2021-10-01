@@ -3,8 +3,8 @@ package com.soten.sotenshopclient.data.request.auth
 import android.util.Patterns
 
 data class SignInRequest(
-    val email: String?,
-    val password: String?,
+    val email: String,
+    val password: String,
 ) {
 
     fun isNotValidEmail() =

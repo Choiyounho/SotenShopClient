@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val shoppingRepository: ShoppingRepository,
-    private val sharedPreferenceManager: SharedPreferenceManager
+    private val sharedPreferenceManager: SharedPreferenceManager,
 ) : ViewModel() {
 
     private val _userStateLiveData = MutableLiveData(UserState.NORMAL)
@@ -29,12 +29,16 @@ class AuthViewModel @Inject constructor(
     val authNotice get() = _authNotice
 
     init {
-        signIn(
-            SignInRequest(
-                sharedPreferenceManager.getString(KEY_USER_EMAIL),
-                sharedPreferenceManager.getString(KEY_USER_PASSWORD)
+        if (sharedPreferenceManager.getString(KEY_USER_EMAIL) != null
+            && sharedPreferenceManager.getString(KEY_USER_PASSWORD) != null
+        ) {
+            signIn(
+                SignInRequest(
+                    sharedPreferenceManager.getString(KEY_USER_EMAIL)!!,
+                    sharedPreferenceManager.getString(KEY_USER_PASSWORD)!!
+                )
             )
-        )
+        }
     }
 
     fun setSignUpState() {
@@ -118,6 +122,9 @@ class AuthViewModel @Inject constructor(
         }
 
     fun getUserName(): String? {
+        if (sharedPreferenceManager.getString(KEY_USER_NAME) == null) {
+            _userStateLiveData.value = UserState.NORMAL
+        }
         return sharedPreferenceManager.getString(KEY_USER_NAME)
     }
 
