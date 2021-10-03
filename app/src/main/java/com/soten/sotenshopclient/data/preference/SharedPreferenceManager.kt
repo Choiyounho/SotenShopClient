@@ -19,13 +19,13 @@ class SharedPreferenceManager @Inject constructor(
     fun getString(key: String): String? =
         sharedPreferences.getString(key, null)
 
-    fun putString(key: String, value: String?) =
+    private fun putString(key: String, value: String?) =
         sharedPreferences.edit { putString(key, value) }
 
     fun getInt(key: String): Int =
         sharedPreferences.getInt(key, Int.MIN_VALUE)
 
-    fun putInt(key: String, value: Int) =
+    private fun putInt(key: String, value: Int) =
         sharedPreferences.edit { putInt(key, value) }
 
     fun saveUserInfo(response: SignInResponse, signInRequest: SignInRequest) {
@@ -33,17 +33,12 @@ class SharedPreferenceManager @Inject constructor(
         putString(KEY_REFRESH_TOKEN, response.refreshToken)
         putString(KEY_USER_NAME, response.userName)
         putInt(KEY_USER_ID, response.userId)
-        putString(KEY_USER_EMAIL, signInRequest.email!!)
-        putString(KEY_USER_PASSWORD, signInRequest.password!!)
+        putString(KEY_USER_EMAIL, signInRequest.email)
+        putString(KEY_USER_PASSWORD, signInRequest.password)
     }
 
     fun resetUserInfo() {
-        putString(KEY_TOKEN, null)
-        putString(KEY_REFRESH_TOKEN, null)
-        putString(KEY_USER_NAME, null)
-        putInt(KEY_USER_ID, Int.MIN_VALUE)
-        putString(KEY_USER_EMAIL, null)
-        putString(KEY_USER_PASSWORD, null)
+        sharedPreferences.edit { clear() }
     }
 
 }
