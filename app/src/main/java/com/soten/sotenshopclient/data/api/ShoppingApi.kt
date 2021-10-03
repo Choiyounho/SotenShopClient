@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ShoppingApi {
 
@@ -26,5 +27,10 @@ interface ShoppingApi {
     suspend fun registerProduct(
         @Body request: ProductRegistrationRequest
     ): ApiResponse<Void>
+
+    @GET("products/{id}")
+    suspend fun getProductForId(
+        @Path("id") id: Int
+    ): ApiResponse<ProductResponse>
 
 }

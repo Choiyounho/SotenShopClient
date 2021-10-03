@@ -33,8 +33,7 @@ class LoadingDialogFragment : DialogFragment(R.layout.fragment_loading_dialog) {
                     add(GifDecoder())
                 }
             }.build()
-        binding.loadingGif.load(R.drawable.loadingGif, imageLoader)
-
+        binding.loadingGif.load(R.drawable.loading_gif, imageLoader)
     }
 
     override fun onDestroyView() {

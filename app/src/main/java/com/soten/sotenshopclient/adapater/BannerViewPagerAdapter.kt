@@ -2,19 +2,17 @@ package com.soten.sotenshopclient.adapater
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.soten.sotenshopclient.R
-import com.soten.sotenshopclient.databinding.ItemBannerBinding
+import com.soten.sotenshopclient.databinding.ItemViewpagerImageBinding
 
 class BannerViewPagerAdapter : RecyclerView.Adapter<BannerViewPagerAdapter.BannerViewHolder>() {
 
-    private var bannerItemList = emptyList<BannerItem>()
+    private var bannerItemList = emptyList<ItemImage<Int>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
         return BannerViewHolder(
-            ItemBannerBinding.inflate(
+            ItemViewpagerImageBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -22,15 +20,7 @@ class BannerViewPagerAdapter : RecyclerView.Adapter<BannerViewPagerAdapter.Banne
         )
     }
 
-    init {
-        setImage(listOf(
-            BannerItem(R.drawable.home_banner_1),
-            BannerItem(R.drawable.home_banner_2),
-            BannerItem(R.drawable.home_banner_3),
-        ))
-    }
-
-    private fun setImage(list: List<BannerItem>) {
+    fun setImage(list: List<ItemImage<Int>>) {
         bannerItemList = list
         notifyDataSetChanged()
     }
@@ -41,16 +31,15 @@ class BannerViewPagerAdapter : RecyclerView.Adapter<BannerViewPagerAdapter.Banne
 
     override fun getItemCount() = bannerItemList.size
 
-    inner class BannerViewHolder(private val binding: ItemBannerBinding) :
+    class BannerViewHolder(private val binding: ItemViewpagerImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(bannerItem: BannerItem) {
-            binding.bannerImage.load(bannerItem.image)
+        fun bind(itemImage: ItemImage<Int>) {
+            binding.image.load(itemImage.image)
         }
-
     }
 }
 
-data class BannerItem(
-    @DrawableRes val image: Int
+data class ItemImage<T>(
+    val image: T,
 )

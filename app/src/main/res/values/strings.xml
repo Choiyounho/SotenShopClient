@@ -23,4 +23,5 @@
     <string name="logo_text">"SotenShop SignUp"</string>
     <string name="logout">로그아웃</string>
     <string name="add_product">상품 등록</string>
+    <string name="add_to_cart">Add to cart</string>
 </resources>

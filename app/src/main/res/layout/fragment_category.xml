@@ -47,12 +47,12 @@
 
 
     <ImageView
-        android:id="@+id/bannerImage"
+        android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/category_banner"
-        app:layout_constraintBottom_toTopOf="@id/bannerImage"
+        app:layout_constraintBottom_toTopOf="@id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarContainer" />
@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bannerImage">
+        app:layout_constraintTop_toBottomOf="@id/image">
 
         <LinearLayout
             android:layout_width="match_parent"

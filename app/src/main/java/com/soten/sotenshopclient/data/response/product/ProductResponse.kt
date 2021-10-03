@@ -15,7 +15,7 @@ data class ProductResponse(
     val description: String,
 
     @SerializedName("id")
-    val id: Int?,
+    val id: Int,
 
     @SerializedName("images")
     val images: String,

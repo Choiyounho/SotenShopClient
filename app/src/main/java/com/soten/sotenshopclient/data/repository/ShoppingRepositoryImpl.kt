@@ -33,4 +33,9 @@ class ShoppingRepositoryImpl(
             shoppingApi.registerProduct(request)
         }
 
+    override suspend fun getProductForId(id: Int): ApiResponse<ProductResponse> =
+        withContext(Dispatchers.IO) {
+            shoppingApi.getProductForId(id)
+        }
+
 }

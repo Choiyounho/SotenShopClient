@@ -1,12 +1,14 @@
 package com.soten.sotenshopclient.ui.home
 
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.soten.sotenshopclient.R
+import com.soten.sotenshopclient.adapater.ItemImage
 import com.soten.sotenshopclient.adapater.BannerViewPagerAdapter
 import com.soten.sotenshopclient.adapater.ProductAdapter
 import com.soten.sotenshopclient.databinding.FragmentHomeBinding
@@ -25,7 +27,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel = viewModels<HomeViewModel>()
 
-    private val productAdapter by lazy { ProductAdapter() }
+    private val productAdapter by lazy {
+        ProductAdapter {
+            val bundle = bundleOf(
+                KEY_PRODUCT_ID to it
+            )
+            findNavController().navigate(R.id.navigationDetailFragment, bundle)
+        }
+    }
     private val bannerViewPagerAdapter by lazy { BannerViewPagerAdapter() }
 
     override fun bindViews() = with(binding) {
@@ -35,6 +44,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         bannerViewPager.adapter = bannerViewPagerAdapter
         bannerViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        bannerViewPagerAdapter.setImage(
+            listOf(
+                ItemImage(R.drawable.home_banner_1),
+                ItemImage(R.drawable.home_banner_2),
+                ItemImage(R.drawable.home_banner_3),
+            )
+        )
 
         autoScrollViewPager()
     }
@@ -72,6 +88,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         private const val BANNER_AUTO_SCROLL_TIME = 3000L
         private const val NEXT_POSITION = 1
+
+        const val KEY_PRODUCT_ID = "KEY_PRODUCT_ID"
     }
 
 }

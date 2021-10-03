@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.size.Scale
+import coil.transform.RoundedCornersTransformation
 import com.soten.sotenshopclient.R
-import com.soten.sotenshopclient.databinding.ItemProductBinding
 import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.databinding.ItemProductBinding
 
-class ProductAdapter :
+class ProductAdapter(
+    val itemClickListener: (Int) -> Unit,
+) :
     ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(differ) {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -27,19 +31,29 @@ class ProductAdapter :
         )
     }
 
-    class ProductViewHolder(private val binding: ItemProductBinding) :
+    inner class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(productResponse: ProductResponse) {
-            binding.productImage.load("https://i.stack.imgur.com/GsDIl.jpg") {
+            val thumbnail = productResponse.images.split(SPLIT_DELIMITER)
+
+            binding.productImage.load("$SPLIT_DELIMITER${thumbnail[1]}") {
                 placeholder(R.drawable.ic_soten_shop)
+                RoundedCornersTransformation(50f)
+                Scale.FIT
             }
             binding.productTitle.text = productResponse.name
             binding.productPrice.text = productResponse.price.toString()
+
+            binding.root.setOnClickListener {
+                itemClickListener(productResponse.id)
+            }
         }
     }
 
     companion object {
+        const val SPLIT_DELIMITER = "https://"
+
         val differ = object : DiffUtil.ItemCallback<ProductResponse>() {
             override fun areItemsTheSame(
                 oldItem: ProductResponse,

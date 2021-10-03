@@ -53,5 +53,10 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigationDetailFragment"
+        android:name="com.soten.sotenshopclient.ui.home.detail.DetailFragment"
+        android:label="DetailFragment" />
+
 
 </navigation>

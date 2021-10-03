@@ -2,15 +2,11 @@ package com.soten.sotenshopclient.ui
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.ActivityMainBinding
-import com.soten.sotenshopclient.databinding.ItemBannerBinding
-import com.soten.sotenshopclient.databinding.ItemPhotoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,9 +30,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigationCategoryFragment -> hideNavView()
                 R.id.navigationSignInAndSignUpFragment -> hideNavView()
                 R.id.navigationSettingFragment -> hideNavView()
-                else -> {
-                    binding.navView.visibility = View.VISIBLE
-                }
+                R.id.navigationDetailFragment -> hideNavView()
+                else -> binding.navView.visibility = View.VISIBLE
             }
         }
 

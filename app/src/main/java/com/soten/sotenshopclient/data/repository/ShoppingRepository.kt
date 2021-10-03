@@ -1,5 +1,6 @@
 package com.soten.sotenshopclient.data.repository
 
+import androidx.lifecycle.LiveData
 import com.soten.sotenshopclient.data.request.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.auth.SignUpRequest
 import com.soten.sotenshopclient.data.request.product.ProductRegistrationRequest
@@ -18,5 +19,9 @@ interface ShoppingRepository {
     suspend fun registerProduct(
         request: ProductRegistrationRequest,
     ): ApiResponse<Void>
+
+    suspend fun getProductForId(
+        id: Int
+    ): ApiResponse<ProductResponse>
 
 }

@@ -70,7 +70,7 @@
             android:layout_marginTop="150dp"
             android:layout_width="match_parent"
             android:text="상품등록"
-            android:background="@drawable/background_text_input_layout"
+            android:background="@drawable/background_ratio_16"
             android:layout_marginHorizontal="24dp"
             android:layout_height="wrap_content" />
 
@@ -79,7 +79,7 @@
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:text="테스트"
-            android:background="@drawable/background_text_input_layout"
+            android:background="@drawable/background_ratio_16"
             android:layout_marginHorizontal="24dp"
             android:layout_height="wrap_content" />
 
