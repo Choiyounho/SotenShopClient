@@ -2,6 +2,7 @@ package com.soten.sotenshopclient.data.response.product
 
 
 import com.google.gson.annotations.SerializedName
+import com.soten.sotenshopclient.domain.model.ProductModel
 
 data class ProductResponse(
 
@@ -35,4 +36,13 @@ data class ProductResponse(
     @SerializedName("userId")
     val userId: Int
 
-)
+) {
+
+    fun toModel() = ProductModel(
+        id = id,
+        thumbnailImage = images.first(),
+        name = name,
+        price = price
+    )
+
+}

@@ -1,16 +1,19 @@
 package com.soten.sotenshopclient.ui.home.detail
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.soten.sotenshopclient.adapater.ItemImage
-import com.soten.sotenshopclient.data.repository.ShoppingRepository
+import com.soten.sotenshopclient.data.db.entity.BasketEntity
+import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
+import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.util.TimeFormatUtil
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 class DetailViewModel @AssistedInject constructor(
     private val shoppingRepository: ShoppingRepository,
+    private val basketRepository: ProductBasketRepository,
     @Assisted private val id: Int,
 ) : ViewModel() {
 
@@ -18,7 +21,7 @@ class DetailViewModel @AssistedInject constructor(
     val productLiveData: LiveData<ProductResponse?> get() = _productLiveData
 
     private val _imageLiveData = MutableLiveData<List<ItemImage<String>>>()
-    val imageLiveData: LiveData<List<ItemImage<String>>> = _imageLiveData
+    val imageLiveData: LiveData<List<ItemImage<String>>> get() = _imageLiveData
 
     init {
         getProductForId()
@@ -31,11 +34,17 @@ class DetailViewModel @AssistedInject constructor(
             val images = mutableListOf<ItemImage<String>>()
             it.images.forEach { image ->
                 images.add(ItemImage(image))
-                Log.d("TestT", image)
             }
             _imageLiveData.value = images
-            Log.d("TestT", "d : ${images}")
         }
+    }
+
+    fun onAddBasketButton() = viewModelScope.launch {
+        basketRepository.insertProduct(BasketEntity(
+            id = productLiveData.value!!.id,
+            product = productLiveData.value!!.toModel(),
+            createdAt = TimeFormatUtil.createdTimeForRegisterProduct()
+        ))
     }
 
     @dagger.assisted.AssistedFactory

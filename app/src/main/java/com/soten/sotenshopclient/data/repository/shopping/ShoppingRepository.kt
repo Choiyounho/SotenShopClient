@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.repository
+package com.soten.sotenshopclient.data.repository.shopping
 
 import com.soten.sotenshopclient.data.request.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.auth.SignUpRequest

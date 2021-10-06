@@ -9,13 +9,12 @@ import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.soten.sotenshopclient.R
+import com.soten.sotenshopclient.data.db.entity.LikedEntity
 import com.soten.sotenshopclient.data.response.product.ProductResponse
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 
-class ProductAdapter(
-    val itemClickListener: (Int) -> Unit,
-) :
-    ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(differ) {
+class LikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
+    ListAdapter<LikedEntity, LikedEntityAdapter.ProductViewHolder>(differ) {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(currentList[position])
@@ -34,10 +33,8 @@ class ProductAdapter(
     inner class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(productResponse: ProductResponse) {
-
-
-            val thumbnail = productResponse.images[0]
+        fun bind(productResponse: LikedEntity) {
+            val thumbnail = productResponse.product.thumbnailImage
 
             binding.productImage.load(thumbnail) {
                 placeholder(R.drawable.ic_soten_shop)
@@ -45,8 +42,8 @@ class ProductAdapter(
                 Scale.FIT
                 error(R.drawable.ic_error)
             }
-            binding.productTitle.text = productResponse.name
-            binding.productPrice.text = productResponse.price.toString()
+            binding.productTitle.text = productResponse.product.name
+            binding.productPrice.text = productResponse.product.price.toString()
 
             binding.root.setOnClickListener {
                 itemClickListener(productResponse.id)
@@ -56,15 +53,15 @@ class ProductAdapter(
     }
 
     companion object {
-        val differ = object : DiffUtil.ItemCallback<ProductResponse>() {
+        val differ = object : DiffUtil.ItemCallback<LikedEntity>() {
             override fun areItemsTheSame(
-                oldItem: ProductResponse,
-                newItem: ProductResponse,
+                oldItem: LikedEntity,
+                newItem: LikedEntity,
             ) = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
-                oldItem: ProductResponse,
-                newItem: ProductResponse,
+                oldItem: LikedEntity,
+                newItem: LikedEntity,
             ) = oldItem == newItem
         }
     }

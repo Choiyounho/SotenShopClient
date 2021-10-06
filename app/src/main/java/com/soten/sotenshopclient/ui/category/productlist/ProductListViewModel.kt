@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.soten.sotenshopclient.data.repository.PagingRepository
+import com.soten.sotenshopclient.data.repository.paging.PagingRepository
 import com.soten.sotenshopclient.data.response.product.ProductResponse
 import com.soten.sotenshopclient.ui.category.CategoryState
 import dagger.hilt.android.lifecycle.HiltViewModel

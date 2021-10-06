@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.repository
+package com.soten.sotenshopclient.data.repository.firebase
 
 import com.charlezz.pickle.data.entity.Media
 import com.google.firebase.storage.FirebaseStorage

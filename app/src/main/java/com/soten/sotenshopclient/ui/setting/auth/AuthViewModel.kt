@@ -8,7 +8,7 @@ import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_EM
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_NAME
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_PASSWORD
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
-import com.soten.sotenshopclient.data.repository.ShoppingRepository
+import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.request.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.auth.SignUpRequest
 import com.soten.sotenshopclient.data.response.auth.SignInResponse
