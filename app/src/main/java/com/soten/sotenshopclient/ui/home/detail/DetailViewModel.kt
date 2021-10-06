@@ -1,7 +1,8 @@
 package com.soten.sotenshopclient.ui.home.detail
 
+import android.util.Log
 import androidx.lifecycle.*
-import com.soten.sotenshopclient.adapater.ProductAdapter
+import com.soten.sotenshopclient.adapater.ItemImage
 import com.soten.sotenshopclient.data.repository.ShoppingRepository
 import com.soten.sotenshopclient.data.response.product.ProductResponse
 import dagger.assisted.Assisted
@@ -16,20 +17,24 @@ class DetailViewModel @AssistedInject constructor(
     private val _productLiveData = MutableLiveData<ProductResponse?>()
     val productLiveData: LiveData<ProductResponse?> get() = _productLiveData
 
-    private val _imageLiveData = MutableLiveData<List<String>>()
-    val imageLiveData: LiveData<List<String>> = _imageLiveData
+    private val _imageLiveData = MutableLiveData<List<ItemImage<String>>>()
+    val imageLiveData: LiveData<List<ItemImage<String>>> = _imageLiveData
 
     init {
         getProductForId()
     }
 
-    fun getProductForId() = viewModelScope.launch {
-        shoppingRepository.getProductForId(id).data.let {
+    private fun getProductForId() = viewModelScope.launch {
+        shoppingRepository.getProductById(id).data.let {
             _productLiveData.value = it
-            val images = (it.images.split(ProductAdapter.SPLIT_DELIMITER) as MutableList<String>)
-            images.removeFirst()
-            images.removeLast()
+
+            val images = mutableListOf<ItemImage<String>>()
+            it.images.forEach { image ->
+                images.add(ItemImage(image))
+                Log.d("TestT", image)
+            }
             _imageLiveData.value = images
+            Log.d("TestT", "d : ${images}")
         }
     }
 
@@ -48,7 +53,6 @@ class DetailViewModel @AssistedInject constructor(
                 return assistedFactory.create(id) as T
             }
         }
-
     }
 
 }

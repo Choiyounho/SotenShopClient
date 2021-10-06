@@ -14,9 +14,9 @@ class FirebaseRepositoryImpl @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
 ) : FirebaseRepository {
 
-    override suspend fun uploadImagesAsync(mediaList: List<Media>): Deferred<String> =
+    override suspend fun uploadImagesAsync(mediaList: List<Media>): Deferred<List<String>> =
         CoroutineScope(Dispatchers.IO).async {
-            var path = ""
+            val images = mutableListOf<String>()
             val uploadDeferred: List<Deferred<Any>> =
                 mediaList.mapIndexed { index, media ->
                     async {
@@ -31,7 +31,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                                 .downloadUrl
                                 .await()
                                 .toString().also {
-                                    path += it
+                                    images.add(it)
                                 }
                         } catch (e: Exception) {
                             e.printStackTrace()
@@ -40,6 +40,6 @@ class FirebaseRepositoryImpl @Inject constructor(
                     }
                 }
             uploadDeferred.awaitAll()
-            path
+            images
         }
 }

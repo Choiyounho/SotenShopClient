@@ -5,6 +5,6 @@ import kotlinx.coroutines.Deferred
 
 interface FirebaseRepository {
 
-    suspend fun uploadImagesAsync(mediaList: List<Media>): Deferred<String>
+    suspend fun uploadImagesAsync(mediaList: List<Media>): Deferred<List<String>>
 
 }

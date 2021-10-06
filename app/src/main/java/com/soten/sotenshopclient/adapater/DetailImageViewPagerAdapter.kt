@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.soten.sotenshopclient.adapater.ProductAdapter.Companion.SPLIT_DELIMITER
+import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.databinding.ItemViewpagerImageBinding
 
 class DetailImageViewPagerAdapter :
@@ -41,7 +41,10 @@ class DetailImageViewPagerAdapter :
             binding.image.layoutParams = binding.image.layoutParams.apply {
                 height = targetHeight
             }
-            binding.image.load(SPLIT_DELIMITER + detailImage)
+            binding.image.load(detailImage.image) {
+                error(R.drawable.ic_error)
+            }
         }
     }
+
 }

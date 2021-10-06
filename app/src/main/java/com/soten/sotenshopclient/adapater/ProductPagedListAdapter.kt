@@ -2,8 +2,8 @@ package com.soten.sotenshopclient.adapater
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
@@ -12,26 +12,23 @@ import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.data.response.product.ProductResponse
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 
-class ProductAdapter(
-    val itemClickListener: (Int) -> Unit,
-) :
-    ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(differ) {
+class ProductPagedListAdapter :
+    PagingDataAdapter<ProductResponse, ProductPagedListAdapter.ProductPagedViewHolder>(diffUtil) {
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(currentList[position])
+    override fun onBindViewHolder(holder: ProductPagedViewHolder, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ProductPagedViewHolder(
             ItemProductBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
-    }
 
-    inner class ProductViewHolder(private val binding: ItemProductBinding) :
+    inner class ProductPagedViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(productResponse: ProductResponse) {
@@ -41,20 +38,15 @@ class ProductAdapter(
                 placeholder(R.drawable.ic_soten_shop)
                 RoundedCornersTransformation(50f)
                 Scale.FIT
-                error(R.drawable.ic_error)
+                error(R.drawable.category_banner)
             }
             binding.productTitle.text = productResponse.name
             binding.productPrice.text = productResponse.price.toString()
-
-            binding.root.setOnClickListener {
-                itemClickListener(productResponse.id)
-            }
         }
     }
 
     companion object {
-
-        val differ = object : DiffUtil.ItemCallback<ProductResponse>() {
+        val diffUtil = object : DiffUtil.ItemCallback<ProductResponse>() {
             override fun areItemsTheSame(
                 oldItem: ProductResponse,
                 newItem: ProductResponse,

@@ -1,5 +1,6 @@
 package com.soten.sotenshopclient.ui.setting.auth
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,10 +24,10 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _userStateLiveData = MutableLiveData(UserState.NORMAL)
-    val userStateLiveData get() = _userStateLiveData
+    val userStateLiveData: LiveData<UserState> get() = _userStateLiveData
 
     private val _authNotice = MutableLiveData(PLZ_SIGN_IN)
-    val authNotice get() = _authNotice
+    val authNotice: LiveData<String> get() = _authNotice
 
     init {
         if (sharedPreferenceManager.getString(KEY_USER_EMAIL) != null

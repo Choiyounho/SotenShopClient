@@ -1,5 +1,6 @@
 package com.soten.sotenshopclient.ui.home.detail
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.soten.sotenshopclient.adapater.DetailImageViewPagerAdapter
@@ -41,6 +42,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         }
 
         viewModel.value.imageLiveData.observe(viewLifecycleOwner) {
+            Log.d("DestT", "d $it")
             viewPagerAdapter.setImage(it)
         }
     }

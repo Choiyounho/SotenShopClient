@@ -39,8 +39,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun bindViews() = with(binding) {
         super.bindViews()
-        recyclerView.adapter = productAdapter
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        productRecyclerView.adapter = productAdapter
+        productRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
         bannerViewPager.adapter = bannerViewPagerAdapter
         bannerViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL

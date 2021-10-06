@@ -14,11 +14,14 @@ data class ProductResponse(
     @SerializedName("description")
     val description: String,
 
+    @SerializedName("updatedAt")
+    val updatedAt: String,
+
     @SerializedName("id")
     val id: Int,
 
     @SerializedName("images")
-    val images: String,
+    val images: List<String>,
 
     @SerializedName("name")
     val name: String,
@@ -28,9 +31,6 @@ data class ProductResponse(
 
     @SerializedName("status")
     val status: String,
-
-    @SerializedName("updatedAt")
-    val updatedAt: String,
 
     @SerializedName("userId")
     val userId: Int

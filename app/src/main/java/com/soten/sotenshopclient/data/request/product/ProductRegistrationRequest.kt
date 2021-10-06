@@ -5,6 +5,6 @@ data class ProductRegistrationRequest(
     val description: String,
     val price: Int,
     val categoryId: Int,
-    var imagePath: String? = null,
+    var images: List<String>? = null,
     val userId: Int
 )
