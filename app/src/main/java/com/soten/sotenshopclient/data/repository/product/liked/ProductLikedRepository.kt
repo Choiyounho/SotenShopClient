@@ -11,4 +11,6 @@ interface ProductLikedRepository {
 
     suspend fun deleteProduct(productResponse: LikedEntity)
 
+    suspend fun getLikedEntityById(entityId: Int): LikedEntity?
+
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.soten.sotenshopclient.data.db.entity.BasketEntity
-import com.soten.sotenshopclient.databinding.ItemLikedAndBasketProductBinding
+import com.soten.sotenshopclient.databinding.ItemBasketProductBinding
 
 class ProductBasketEntityAdapter(
     val itemClickListener: (Int) -> Unit,
@@ -23,7 +23,7 @@ class ProductBasketEntityAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
-            ItemLikedAndBasketProductBinding.inflate(
+            ItemBasketProductBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -31,7 +31,7 @@ class ProductBasketEntityAdapter(
         )
     }
 
-    inner class ProductViewHolder(private val binding: ItemLikedAndBasketProductBinding) :
+    inner class ProductViewHolder(private val binding: ItemBasketProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: BasketEntity) {

@@ -19,15 +19,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/ic_no_like"
-            app:layout_constraintEnd_toEndOf="@id/productImage"
-            app:layout_constraintTop_toTopOf="@id/productImage" />
-
         <TextView
             android:id="@+id/productTitle"
             android:layout_width="0dp"

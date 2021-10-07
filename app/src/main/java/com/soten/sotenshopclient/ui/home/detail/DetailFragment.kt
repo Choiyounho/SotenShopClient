@@ -3,6 +3,7 @@ package com.soten.sotenshopclient.ui.home.detail
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import coil.load
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.DetailImageViewPagerAdapter
 import com.soten.sotenshopclient.databinding.FragmentDetailBinding
@@ -28,13 +29,15 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private val viewPagerAdapter by lazy { DetailImageViewPagerAdapter() }
 
     override fun initViews() {
-        binding.backButton.setOnClickListener { findNavController().navigateUp() }
-        binding.basketImage.setOnClickListener { findNavController().navigate(R.id.navigationBasketFragment) }
+        binding.backButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        binding.basketImage.setOnClickListener {
+            findNavController().navigate(R.id.navigationBasketFragment)
+        }
     }
 
     override fun bindViews() {
-        binding.viewModel = detailViewModel.value
-
         binding.imageViewPager.apply {
             adapter = viewPagerAdapter
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -44,10 +47,15 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun observeData() {
         detailViewModel.value.productLiveData.observe(viewLifecycleOwner) {
             binding.product = it
+            binding.viewModel = detailViewModel.value
         }
 
         detailViewModel.value.imageLiveData.observe(viewLifecycleOwner) {
             viewPagerAdapter.setImage(it)
+        }
+
+        detailViewModel.value.toggleLiveData.observe(viewLifecycleOwner) {
+            binding.likeImage.isSelected = it
         }
     }
 

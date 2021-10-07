@@ -1,12 +1,15 @@
 package com.soten.sotenshopclient.ui.home.detail
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.soten.sotenshopclient.adapater.ItemImage
 import com.soten.sotenshopclient.data.db.entity.BasketEntity
+import com.soten.sotenshopclient.data.db.entity.LikedEntity
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
+import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.response.product.ProductResponse
-import com.soten.sotenshopclient.util.TimeFormatUtil
+import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegisterProduct
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
@@ -14,6 +17,7 @@ import kotlinx.coroutines.launch
 class DetailViewModel @AssistedInject constructor(
     private val shoppingRepository: ShoppingRepository,
     private val basketRepository: ProductBasketRepository,
+    private val likedRepository: ProductLikedRepository,
     @Assisted private val id: Int,
 ) : ViewModel() {
 
@@ -22,6 +26,9 @@ class DetailViewModel @AssistedInject constructor(
 
     private val _imageLiveData = MutableLiveData<List<ItemImage<String>>>()
     val imageLiveData: LiveData<List<ItemImage<String>>> get() = _imageLiveData
+
+    private val _toggleLiveData = MutableLiveData<Boolean>()
+    val toggleLiveData: LiveData<Boolean> get() = _toggleLiveData
 
     init {
         getProductForId()
@@ -36,15 +43,43 @@ class DetailViewModel @AssistedInject constructor(
                 images.add(ItemImage(image))
             }
             _imageLiveData.value = images
+
+            fetchLikedButton()
+        }
+    }
+
+    private fun fetchLikedButton() = viewModelScope.launch {
+        likedRepository.getLikedEntityById(id)?.let {
+            Log.d("TestT", "d ${likedRepository.getAllLikedProduct()}")
+            _toggleLiveData.value = true
+        } ?: run {
+            _toggleLiveData.value = false
         }
     }
 
     fun onAddBasketButton() = viewModelScope.launch {
         basketRepository.insertProduct(BasketEntity(
-            id = productLiveData.value!!.id,
+            id = id,
             product = productLiveData.value!!.toModel(),
-            createdAt = TimeFormatUtil.createdTimeForRegisterProduct(),
+            createdAt = createdTimeForRegisterProduct(),
         ))
+    }
+
+    fun toggleLikeButton() = viewModelScope.launch {
+        val likedEntity = LikedEntity(
+            id = id,
+            product = _productLiveData.value!!.toModel(),
+            createdAt = createdTimeForRegisterProduct()
+        )
+        if (_toggleLiveData.value == true) {
+            _toggleLiveData.value = false
+            likedRepository.deleteProduct(likedEntity)
+            Log.d("TestT", "d ${likedRepository.getAllLikedProduct()}")
+        } else {
+            _toggleLiveData.value = true
+            likedRepository.insertProduct(likedEntity)
+            Log.d("TestT", "d ${likedRepository.getAllLikedProduct()}")
+        }
     }
 
     @dagger.assisted.AssistedFactory

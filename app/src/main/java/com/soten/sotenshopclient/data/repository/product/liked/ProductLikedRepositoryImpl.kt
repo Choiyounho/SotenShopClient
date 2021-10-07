@@ -20,4 +20,8 @@ class ProductLikedRepositoryImpl @Inject constructor(
         return likedDao.deleteProduct(product)
     }
 
+    override suspend fun getLikedEntityById(entityId: Int): LikedEntity? {
+        return likedDao.getLikedEntityById(entityId)
+    }
+
 }

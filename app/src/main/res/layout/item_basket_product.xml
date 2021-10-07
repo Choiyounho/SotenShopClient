@@ -7,10 +7,10 @@
             name="basketEntity"
             type="com.soten.sotenshopclient.data.db.entity.BasketEntity" />
 
-
         <variable
             name="viewModel"
             type="com.soten.sotenshopclient.ui.basket.BasketViewModel" />
+
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

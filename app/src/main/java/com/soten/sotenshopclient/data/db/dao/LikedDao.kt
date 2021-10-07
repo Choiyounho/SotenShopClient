@@ -15,4 +15,7 @@ interface LikedDao {
     @Delete
     suspend fun deleteProduct(product: LikedEntity)
 
+    @Query("SELECT * FROM LIKED WHERE id=:entityId")
+    suspend fun getLikedEntityById(entityId: Int): LikedEntity?
+
 }

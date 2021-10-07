@@ -20,12 +20,18 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
 
     private val likedViewModel by viewModels<LikeViewModel>()
 
-    private val likedProductListAdapter by lazy { ProductLikedEntityAdapter {
-        val bundle = bundleOf(
-            HomeFragment.KEY_PRODUCT_ID to it
-        )
-        findNavController().navigate(R.id.navigationDetailFragment, bundle)
-    } }
+    private val likedProductListAdapter by lazy {
+        ProductLikedEntityAdapter(
+            itemClickListener = {
+                val bundle = bundleOf(
+                    HomeFragment.KEY_PRODUCT_ID to it
+                )
+                findNavController().navigate(R.id.navigationDetailFragment, bundle)
+            },
+            deleteClickListener = {
+                likedViewModel.deleteBasketEntity(it)
+            })
+    }
 
     override fun initViews() {
         binding.backButton.setOnClickListener { findNavController().navigateUp() }

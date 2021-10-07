@@ -7,7 +7,7 @@ object TimeFormatUtil {
 
     fun createdTimeForRegisterProduct(): String {
         val currentDateTime = Calendar.getInstance().time
-        return SimpleDateFormat("yy.MM.dd.HH:mm", Locale.KOREA).format(currentDateTime)
+        return SimpleDateFormat("yy.MM.dd.HH:mm:ss", Locale.KOREA).format(currentDateTime)
     }
 
 }

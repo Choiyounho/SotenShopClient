@@ -1,18 +1,19 @@
 package com.soten.sotenshopclient.adapater
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.size.Scale
-import coil.transform.RoundedCornersTransformation
-import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.data.db.entity.LikedEntity
-import com.soten.sotenshopclient.databinding.ItemProductBinding
+import com.soten.sotenshopclient.databinding.ItemLikedProductBinding
 
-class ProductLikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
+class ProductLikedEntityAdapter(
+    val itemClickListener: (Int) -> Unit,
+    val deleteClickListener: (LikedEntity) -> Unit,
+) :
     ListAdapter<LikedEntity, ProductLikedEntityAdapter.ProductViewHolder>(differ) {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -21,7 +22,7 @@ class ProductLikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
-            ItemProductBinding.inflate(
+            ItemLikedProductBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -29,24 +30,16 @@ class ProductLikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
         )
     }
 
-    inner class ProductViewHolder(private val binding: ItemProductBinding) :
+    inner class ProductViewHolder(private val binding: ItemLikedProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(productResponse: LikedEntity) {
-            val thumbnail = productResponse.product.thumbnailImage
+        fun bind(product: LikedEntity) = with(binding) {
+            likedEntity = product
 
-            binding.productImage.load(thumbnail) {
-                placeholder(R.drawable.ic_soten_shop)
-                RoundedCornersTransformation(50f)
-                Scale.FIT
-                error(R.drawable.ic_error)
-            }
-            binding.productTitle.text = productResponse.product.name
-            binding.productPrice.text = productResponse.product.price.toString()
+            thumbnailImage.load(product.product.thumbnailImage)
 
-            binding.root.setOnClickListener {
-                itemClickListener(productResponse.id)
-            }
+            thumbnailImage.setOnClickListener { itemClickListener(product.id) }
+            deleteImage.setOnClickListener { deleteClickListener(product) }
         }
 
     }
