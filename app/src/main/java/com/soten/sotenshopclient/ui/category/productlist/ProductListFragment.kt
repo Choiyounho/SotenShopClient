@@ -1,14 +1,15 @@
 package com.soten.sotenshopclient.ui.category.productlist
 
-import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.ProductPagedListAdapter
 import com.soten.sotenshopclient.databinding.FragmentProductListBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
+import com.soten.sotenshopclient.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,23 +24,18 @@ class ProductListFragment : BaseFragment<FragmentProductListBinding>() {
 
     private val productListViewModel by activityViewModels<ProductListViewModel>()
 
-    private val pagerAdapter by lazy { ProductPagedListAdapter() }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navigateUp()
-            }
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
-    }
+    private val pagerAdapter by lazy {
+        ProductPagedListAdapter {
+        val bundle = bundleOf(
+            HomeFragment.KEY_PRODUCT_ID to it
+        )
+        findNavController().navigate(R.id.navigationDetailFragment, bundle)
+    } }
 
     override fun initViews() {
         binding.backButton.setOnClickListener {
-            navigateUp()
+            productListViewModel.onNormalStateButtonClick()
+            findNavController().navigateUp()
         }
     }
 
@@ -54,11 +50,6 @@ class ProductListFragment : BaseFragment<FragmentProductListBinding>() {
                 pagerAdapter.submitData(it)
             }
         }
-    }
-
-    private fun navigateUp() {
-        productListViewModel.onNormalStateButtonClick()
-        findNavController().navigateUp()
     }
 
 }

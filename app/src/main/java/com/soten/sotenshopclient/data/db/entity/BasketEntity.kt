@@ -13,4 +13,7 @@ data class BasketEntity(
     val id: Int,
     val product: ProductModel,
     val createdAt: String,
-)
+    val count: Int = 1
+) {
+    fun countToString() = count.toString()
+}

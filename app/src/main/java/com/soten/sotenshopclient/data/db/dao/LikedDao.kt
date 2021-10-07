@@ -2,8 +2,6 @@ package com.soten.sotenshopclient.data.db.dao
 
 import androidx.room.*
 import com.soten.sotenshopclient.data.db.entity.LikedEntity
-import com.soten.sotenshopclient.data.response.product.ProductResponse
-import com.soten.sotenshopclient.domain.model.ProductModel
 
 @Dao
 interface LikedDao {

@@ -10,11 +10,10 @@ import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.data.db.entity.LikedEntity
-import com.soten.sotenshopclient.data.response.product.ProductResponse
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 
-class LikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
-    ListAdapter<LikedEntity, LikedEntityAdapter.ProductViewHolder>(differ) {
+class ProductLikedEntityAdapter(val itemClickListener: (Int) -> Unit) :
+    ListAdapter<LikedEntity, ProductLikedEntityAdapter.ProductViewHolder>(differ) {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(currentList[position])

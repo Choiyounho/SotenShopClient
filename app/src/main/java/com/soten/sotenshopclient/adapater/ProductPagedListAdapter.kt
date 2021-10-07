@@ -12,7 +12,7 @@ import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.data.response.product.ProductResponse
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 
-class ProductPagedListAdapter :
+class ProductPagedListAdapter (val itemClickListener: (Int) -> Unit):
     PagingDataAdapter<ProductResponse, ProductPagedListAdapter.ProductPagedViewHolder>(diffUtil) {
 
     override fun onBindViewHolder(holder: ProductPagedViewHolder, position: Int) {
@@ -42,6 +42,10 @@ class ProductPagedListAdapter :
             }
             binding.productTitle.text = productResponse.name
             binding.productPrice.text = productResponse.price.toString()
+
+            binding.root.setOnClickListener {
+                itemClickListener(productResponse.id)
+            }
         }
     }
 

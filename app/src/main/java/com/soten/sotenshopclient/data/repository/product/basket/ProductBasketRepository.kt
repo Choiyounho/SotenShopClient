@@ -12,4 +12,6 @@ interface ProductBasketRepository {
 
     suspend fun deleteProduct(product: BasketEntity)
 
+    suspend fun updateCount(entityId: Int, plusCount: Int)
+
 }

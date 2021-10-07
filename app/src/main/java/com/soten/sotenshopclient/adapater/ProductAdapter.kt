@@ -35,9 +35,7 @@ class ProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(productResponse: ProductResponse) {
-
-
-            val thumbnail = productResponse.images[0]
+            val thumbnail = productResponse.images.first()
 
             binding.productImage.load(thumbnail) {
                 placeholder(R.drawable.ic_soten_shop)

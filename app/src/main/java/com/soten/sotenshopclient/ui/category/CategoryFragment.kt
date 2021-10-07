@@ -12,11 +12,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
 
     override var _binding: FragmentCategoryBinding? = null
+    private val binding get() = _binding!!
     override fun getDataBinding() = FragmentCategoryBinding.inflate(layoutInflater).apply {
         viewModel = productListViewModel
     }
 
     private val productListViewModel by activityViewModels<ProductListViewModel>()
+
+    override fun initViews() {
+        binding.backButton.setOnClickListener { findNavController().navigateUp() }
+    }
 
     override fun observeData() {
         productListViewModel.categoryLiveData.observe(viewLifecycleOwner) {

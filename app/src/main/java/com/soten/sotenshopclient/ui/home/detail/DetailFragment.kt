@@ -1,13 +1,13 @@
 package com.soten.sotenshopclient.ui.home.detail
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.DetailImageViewPagerAdapter
-import com.soten.sotenshopclient.data.db.entity.BasketEntity
 import com.soten.sotenshopclient.databinding.FragmentDetailBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import com.soten.sotenshopclient.ui.home.HomeFragment.Companion.KEY_PRODUCT_ID
-import com.soten.sotenshopclient.util.TimeFormatUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,15 +28,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private val viewPagerAdapter by lazy { DetailImageViewPagerAdapter() }
 
     override fun initViews() {
-//        binding.addBasketButton.setOnClickListener {
-//            detailViewModel.value.insert(
-//                BasketEntity(
-//                    id = detailViewModel.value.productLiveData.value!!.id,
-//                    product = detailViewModel.value.productLiveData.value!!.toModel(),
-//                    createdAt = TimeFormatUtil.createdTimeForRegisterProduct()
-//                )
-//            )
-//        }
+        binding.backButton.setOnClickListener { findNavController().navigateUp() }
+        binding.basketImage.setOnClickListener { findNavController().navigate(R.id.navigationBasketFragment) }
     }
 
     override fun bindViews() {

@@ -43,7 +43,7 @@ class DetailViewModel @AssistedInject constructor(
         basketRepository.insertProduct(BasketEntity(
             id = productLiveData.value!!.id,
             product = productLiveData.value!!.toModel(),
-            createdAt = TimeFormatUtil.createdTimeForRegisterProduct()
+            createdAt = TimeFormatUtil.createdTimeForRegisterProduct(),
         ))
     }
 

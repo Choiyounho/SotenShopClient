@@ -2,7 +2,7 @@ package com.soten.sotenshopclient.ui.category
 
 enum class CategoryState(
     val category: Int,
-    val title: String
+    val title: String,
 ) {
 
     NORMAL(Int.MIN_VALUE, "상태 없음"),

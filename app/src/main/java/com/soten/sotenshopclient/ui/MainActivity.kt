@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigationSignInAndSignUpFragment -> hideNavView()
                 R.id.navigationSettingFragment -> hideNavView()
                 R.id.navigationDetailFragment -> hideNavView()
+                R.id.navigationBasketFragment -> hideNavView()
+                R.id.navigationLikeFragment -> hideNavView()
                 else -> binding.navView.visibility = View.VISIBLE
             }
         }

@@ -2,14 +2,21 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-            name="product"
-            type="com.soten.sotenshopclient.data.response.product.ProductResponse" />
+            name="basketEntity"
+            type="com.soten.sotenshopclient.data.db.entity.BasketEntity" />
+
+
+        <variable
+            name="viewModel"
+            type="com.soten.sotenshopclient.ui.basket.BasketViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-
+                app:cardCornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -30,6 +37,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/thumbnailImage"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:maxLines="2"
-                android:text="테스트"
+                android:text="@{basketEntity.product.name}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@id/deleteImage"
@@ -57,7 +65,7 @@
                 android:id="@+id/productPriceText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="내용 테스트"
+                android:text="@{String.valueOf(basketEntity.product.price)}"
                 app:layout_constraintBottom_toTopOf="@id/countContainer"
                 app:layout_constraintEnd_toEndOf="@id/productTitleText"
                 app:layout_constraintStart_toStartOf="@id/productTitleText"
@@ -81,11 +89,11 @@
                 app:layout_constraintStart_toStartOf="@id/productTitleText">
 
                 <ImageView
-                    android:id="@+id/addButton"
+                    android:id="@+id/minusButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/ic_baseline_add_circle_24" />
+                    android:background="@drawable/ic_baseline_remove_circle_24" />
 
                 <TextView
                     android:id="@+id/countText"
@@ -95,14 +103,14 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1" />
+                    android:text="@{String.valueOf(basketEntity.count)}" />
 
                 <ImageView
-                    android:id="@+id/removeButton"
+                    android:id="@+id/plusButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/ic_baseline_remove_circle_24" />
+                    android:background="@drawable/ic_baseline_add_circle_24" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

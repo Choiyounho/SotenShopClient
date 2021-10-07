@@ -25,4 +25,6 @@
     <string name="add_product">상품 등록</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="liked">Liked</string>
+    <string name="basket">Basket</string>
+    <string name="checkout">Checkout</string>
 </resources>

@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.soten.sotenshopclient.R
-import com.soten.sotenshopclient.adapater.LikedEntityAdapter
+import com.soten.sotenshopclient.adapater.ProductLikedEntityAdapter
 import com.soten.sotenshopclient.databinding.FragmentLikeBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import com.soten.sotenshopclient.ui.home.HomeFragment
@@ -20,12 +20,16 @@ class LikeFragment : BaseFragment<FragmentLikeBinding>() {
 
     private val likedViewModel by viewModels<LikeViewModel>()
 
-    private val likedProductListAdapter by lazy { LikedEntityAdapter {
+    private val likedProductListAdapter by lazy { ProductLikedEntityAdapter {
         val bundle = bundleOf(
             HomeFragment.KEY_PRODUCT_ID to it
         )
         findNavController().navigate(R.id.navigationDetailFragment, bundle)
     } }
+
+    override fun initViews() {
+        binding.backButton.setOnClickListener { findNavController().navigateUp() }
+    }
 
     override fun bindViews() {
         binding.likedRecyclerView.adapter = likedProductListAdapter
