@@ -96,7 +96,7 @@ class BasketViewModel @Inject constructor(
     companion object {
         private const val TAG = "BasketViewModel"
 
-        private const val SUCCESS_CODE = 0
+        const val SUCCESS_CODE = 0
     }
 
 }

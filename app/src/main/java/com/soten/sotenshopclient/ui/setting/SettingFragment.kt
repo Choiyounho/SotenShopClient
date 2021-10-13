@@ -37,6 +37,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         signOutButton.setOnClickListener {
             viewModel.signOut()
         }
+
+        cardImage.setOnClickListener {
+            findNavController().navigate(R.id.navigationCardRegisterFragment)
+        }
     }
 
     override fun observeData() {
@@ -52,19 +56,30 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         }
     }
 
-    private fun handleNormalState() {
-        binding.loginInfoComment1.visibility = View.VISIBLE
-        binding.loginInfoComment2.visibility = View.VISIBLE
+    private fun handleNormalState() = with(binding) {
+        loginInfoComment1.visibility = View.VISIBLE
+        loginInfoComment2.visibility = View.VISIBLE
 
-        binding.welcomeText.visibility = View.GONE
+        addProductButton.visibility = View.GONE
+        welcomeText.visibility = View.GONE
     }
 
     private fun handleSignInState() = with(binding) {
         loginInfoComment1.visibility = View.GONE
         loginInfoComment2.visibility = View.GONE
 
+        addProductButton.visibility = View.VISIBLE
         welcomeText.visibility = View.VISIBLE
         welcomeText.text = "${viewModel.getUserName()}님 환영합니다!!"
     }
+
+    /*
+    *
+        @Field("card_number") card_number: String,
+        @Field("expiry") expiry: String,
+        @Field("birth") birth: String,
+        @Field("pwd_2digit") pwd_2digit: String,
+    *
+    * */
 
 }

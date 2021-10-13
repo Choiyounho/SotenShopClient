@@ -20,15 +20,9 @@ interface IamPortApi {
     @POST("subscribe/customers/{customer_uid}")
     @Headers("Content-Type: application/x-www-form-urlencoded")
     suspend fun registerCard(
-        @Path("customer_uid") customer_uid: String,
+        @Path("customer_uid") customerUid: String,
         @Header("Authorization") token: String?,
-        @FieldMap billingKey: HashMap<String, String>,
-        /*
-        @Field("card_number") card_number: String,
-        @Field("expiry") expiry: String,
-        @Field("birth") birth: String,
-        @Field("pwd_2digit") pwd_2digit: String,
-        */
+        @FieldMap billingKey: HashMap<String, String>
     ): PaymentResponse<BillingKeyResponse>
 
     @FormUrlEncoded

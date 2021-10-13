@@ -19,7 +19,7 @@ class SharedPreferenceManager @Inject constructor(
     fun getString(key: String): String =
         sharedPreferences.getString(key, "null")!!
 
-    private fun putString(key: String, value: String?) =
+    fun putString(key: String, value: String?) =
         sharedPreferences.edit { putString(key, value) }
 
     fun getInt(key: String): Int =

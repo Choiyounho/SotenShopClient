@@ -61,6 +61,9 @@
         android:id="@+id/navigationProductListFragment"
         android:name="com.soten.sotenshopclient.ui.category.productlist.ProductListFragment"
         android:label="ProductListFragment" />
-
+    <fragment
+        android:id="@+id/navigationCardRegisterFragment"
+        android:name="com.soten.sotenshopclient.ui.setting.cardregister.CardRegisterFragment"
+        android:label="CardRegisterFragment" />
 
 </navigation>

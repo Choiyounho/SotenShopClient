@@ -27,4 +27,10 @@
     <string name="liked">Liked</string>
     <string name="basket">Basket</string>
     <string name="checkout">Checkout</string>
+    <string name="register_card">카드 등록</string>
+    <string name="card_expiry">카드 유효기간</string>
+    <string name="pwd_2digit">비밀번호 2자리</string>
+    <string name="birthday">생년 월일</string>
+    <string name="card_number_input">카드 번호 16 자리</string>
+    <string name="card_name_input">카드 이름을 입력해주세요</string>
 </resources>
