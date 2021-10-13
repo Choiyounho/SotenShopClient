@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.request.auth
+package com.soten.sotenshopclient.data.request.shopping.auth
 
 import android.util.Patterns
 

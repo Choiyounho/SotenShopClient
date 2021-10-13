@@ -6,7 +6,7 @@
 
         <variable
             name="product"
-            type="com.soten.sotenshopclient.data.response.product.ProductResponse" />
+            type="com.soten.sotenshopclient.data.response.shopping.product.ProductResponse" />
 
         <variable
             name="viewModel"

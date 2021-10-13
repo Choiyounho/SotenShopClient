@@ -1,79 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/ic_baseline_camera_alt_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/photoRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="@id/addImageButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/addImageButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/addImageButton">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/nameText"
+        <ImageView
+            android:id="@+id/addImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photoRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/addImageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/addImageButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="name"
-            android:text="name"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/addImageButton">
 
-        <EditText
-            android:id="@+id/descriptionText"
-            android:layout_width="match_parent"
-            android:hint="des"
-            android:text="description"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/nameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="name"
+                android:text="name" />
 
-        <EditText
-            android:id="@+id/priceText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="price"
-            android:text="1000"
-            android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/descriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="des"
+                android:text="description" />
 
-        <EditText
-            android:id="@+id/categoryIdText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="catefory"
-            android:text="0"
-            android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/priceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="price"
+                android:text="1000" />
 
-        <Button
-            android:id="@+id/productAdd"
-            android:layout_marginTop="150dp"
-            android:layout_width="match_parent"
-            android:text="상품등록"
-            android:background="@drawable/background_ratio_16"
-            android:layout_marginHorizontal="24dp"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/categoryIdText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="catefory"
+                android:text="0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/productAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="150dp"
+                android:background="@drawable/background_ratio_16"
+                android:text="상품등록" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

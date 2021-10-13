@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.response.auth
+package com.soten.sotenshopclient.data.response.shopping.auth
 
 data class SignInResponse(
     val token: String,

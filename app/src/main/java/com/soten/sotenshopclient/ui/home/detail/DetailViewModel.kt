@@ -8,7 +8,7 @@ import com.soten.sotenshopclient.data.db.entity.LikedEntity
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
 import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
-import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegisterProduct
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -50,7 +50,6 @@ class DetailViewModel @AssistedInject constructor(
 
     private fun fetchLikedButton() = viewModelScope.launch {
         likedRepository.getLikedEntityById(id)?.let {
-            Log.d("TestT", "d ${likedRepository.getAllLikedProduct()}")
             _toggleLiveData.value = true
         } ?: run {
             _toggleLiveData.value = false

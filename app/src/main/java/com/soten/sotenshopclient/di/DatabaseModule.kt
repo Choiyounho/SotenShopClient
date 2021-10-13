@@ -18,7 +18,6 @@ import javax.inject.Singleton
 object DatabaseModule {
 
     private const val SHARED_PREFERENCE_NAME = "SHARED PREFERENCE"
-
     private const val DB_NAME = "product.db"
 
     @Provides

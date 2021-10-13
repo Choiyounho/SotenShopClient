@@ -1,8 +1,8 @@
-package com.soten.sotenshopclient.data.response.paging.json
+package com.soten.sotenshopclient.data.response.shopping.paging.json
 
 
 import com.google.gson.annotations.SerializedName
-import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 
 data class ProductPagingJson(
 

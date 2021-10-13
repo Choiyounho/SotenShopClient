@@ -1,9 +1,9 @@
-package com.soten.sotenshopclient.data.response.paging
+package com.soten.sotenshopclient.data.response.shopping.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.soten.sotenshopclient.data.api.ShoppingApi
-import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

@@ -1,6 +1,7 @@
 package com.soten.sotenshopclient.di
 
 import com.google.firebase.storage.FirebaseStorage
+import com.soten.sotenshopclient.data.api.IamPortApi
 import com.soten.sotenshopclient.data.api.ShoppingApi
 import com.soten.sotenshopclient.data.db.dao.BasketDao
 import com.soten.sotenshopclient.data.db.dao.LikedDao
@@ -15,6 +16,8 @@ import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepos
 import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepositoryImpl
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepositoryImpl
+import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepository
+import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,6 +59,12 @@ object RepositoryModule {
     @Singleton
     fun provideProductBasketRepository(basketDao: BasketDao): ProductBasketRepository {
         return ProductBasketRepositoryImpl(basketDao)
+    }
+
+    @Provides
+    @Singleton
+    fun providePaymentRepository(iamPortApi: IamPortApi): PaymentRepository {
+        return PaymentRepositoryImpl(iamPortApi)
     }
 
 }

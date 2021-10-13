@@ -11,7 +11,7 @@ import com.charlezz.pickle.Pickle
 import com.charlezz.pickle.data.entity.Media
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.PhotoListAdapter
-import com.soten.sotenshopclient.data.request.product.ProductRegistrationRequest
+import com.soten.sotenshopclient.data.request.shopping.product.ProductRegistrationRequest
 import com.soten.sotenshopclient.databinding.FragmentProductRegisterBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint

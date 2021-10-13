@@ -9,9 +9,9 @@ import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_NA
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_PASSWORD
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
-import com.soten.sotenshopclient.data.request.auth.SignInRequest
-import com.soten.sotenshopclient.data.request.auth.SignUpRequest
-import com.soten.sotenshopclient.data.response.auth.SignInResponse
+import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
+import com.soten.sotenshopclient.data.request.shopping.auth.SignUpRequest
+import com.soten.sotenshopclient.data.response.shopping.auth.SignInResponse
 import com.soten.sotenshopclient.ui.setting.UserState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

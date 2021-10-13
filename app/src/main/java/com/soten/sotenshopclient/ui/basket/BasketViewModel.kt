@@ -1,11 +1,15 @@
 package com.soten.sotenshopclient.ui.basket
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.soten.sotenshopclient.BuildConfig
 import com.soten.sotenshopclient.data.db.entity.BasketEntity
+import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
+import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,6 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class BasketViewModel @Inject constructor(
     private val productBasketRepository: ProductBasketRepository,
+    private val paymentRepository: PaymentRepository,
+    private val sharedPreferenceManager: SharedPreferenceManager
 ) : ViewModel() {
 
     private val _basketProductListLiveData = MutableLiveData<List<BasketEntity>>()
@@ -71,6 +77,26 @@ class BasketViewModel @Inject constructor(
 
     private fun minusIntLiveData(liveData: MutableLiveData<Int>) {
         liveData.value = liveData.value?.minus(1)
+    }
+
+    fun paymentGetToken() = viewModelScope.launch {
+        try {
+            val response = paymentRepository.getToken(
+                impKey = BuildConfig.IMP_KEY,
+                impSecret = BuildConfig.IMP_SECRET)
+
+            if (response.code == SUCCESS_CODE) {
+                val paymentToken = response.response.accessToken
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message!!)
+        }
+    }
+
+    companion object {
+        private const val TAG = "BasketViewModel"
+
+        private const val SUCCESS_CODE = 0
     }
 
 }

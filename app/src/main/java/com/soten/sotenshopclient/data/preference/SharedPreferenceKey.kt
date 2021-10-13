@@ -9,4 +9,7 @@ object SharedPreferenceKey {
     const val KEY_USER_EMAIL = "KEY_USER_EMAIL"
     const val KEY_USER_PASSWORD = "KEY_USER_PASSWORD"
 
+    const val KEY_PAYMENT_TOKEN = "KEY_PAYMENT_TOKEN"
+    const val KEY_CARD_NAME = "KEY_CARD_NAME"
+
 }

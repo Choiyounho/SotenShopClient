@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.response.product
+package com.soten.sotenshopclient.data.response.shopping.product
 
 
 import com.google.gson.annotations.SerializedName

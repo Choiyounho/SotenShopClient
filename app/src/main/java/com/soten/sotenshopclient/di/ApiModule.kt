@@ -18,13 +18,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-    private const val BASE_URL = BuildConfig.MY_IP_ADDRESS
+    private const val SHOPPING_URL = BuildConfig.MY_IP_ADDRESS
+    private const val PAYMENT_URL = "https://api.iamport.kr/"
 
     @Provides
     @Singleton
     fun provideShoppingApi(): ShoppingApi {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(SHOPPING_URL)
             .client(provideOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -35,7 +36,7 @@ object ApiModule {
     @Singleton
     fun provideIamPortApi(): IamPortApi {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(PAYMENT_URL)
             .client(
                 OkHttpClient.Builder()
                     .build()

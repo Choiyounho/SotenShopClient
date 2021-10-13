@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.soten.sotenshopclient.R
-import com.soten.sotenshopclient.data.request.auth.SignInRequest
-import com.soten.sotenshopclient.data.request.auth.SignUpRequest
+import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
+import com.soten.sotenshopclient.data.request.shopping.auth.SignUpRequest
 import com.soten.sotenshopclient.databinding.FragmentSignInAndSignUpBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import com.soten.sotenshopclient.ui.setting.UserState

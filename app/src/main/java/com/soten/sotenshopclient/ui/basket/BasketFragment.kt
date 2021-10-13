@@ -18,7 +18,7 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
     private val binding get() = _binding!!
     override fun getDataBinding() = FragmentBasketBinding.inflate(layoutInflater)
 
-    private val viewModel by viewModels<BasketViewModel>()
+    private val basketViewModel by viewModels<BasketViewModel>()
 
     private val basketAdapter by lazy {
         ProductBasketEntityAdapter(
@@ -27,13 +27,13 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
                 findNavController().navigate(R.id.navigationDetailFragment, bundle)
             },
             deleteClickListener = {
-                viewModel.deleteBasketEntity(it)
+                basketViewModel.deleteBasketEntity(it)
             },
             plusClickListener = {
-                viewModel.onEntityCountPlus(it)
+                basketViewModel.onEntityCountPlus(it)
             },
             minusClickListener = {
-                viewModel.onEntityCountMinus(it)
+                basketViewModel.onEntityCountMinus(it)
             }
         )
     }
@@ -41,6 +41,10 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
     override fun initViews() {
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.checkoutButton.setOnClickListener {
+            basketViewModel.paymentGetToken()
         }
     }
 
@@ -50,15 +54,15 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
     }
 
     override fun observeData() {
-        viewModel.basketProductListLiveData.observe(viewLifecycleOwner) {
+        basketViewModel.basketProductListLiveData.observe(viewLifecycleOwner) {
             basketAdapter.submitList(it)
         }
 
-        viewModel.costLiveData.observe(viewLifecycleOwner) {
+        basketViewModel.costLiveData.observe(viewLifecycleOwner) {
             binding.priceSumText.text = "$it 원"
         }
 
-        viewModel.productCountLiveData.observe(viewLifecycleOwner) {
+        basketViewModel.productCountLiveData.observe(viewLifecycleOwner) {
             binding.productCountText.text = "($it items)"
         }
     }

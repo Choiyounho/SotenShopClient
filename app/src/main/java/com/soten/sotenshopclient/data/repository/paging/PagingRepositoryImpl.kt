@@ -6,8 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.soten.sotenshopclient.data.api.ShoppingApi
-import com.soten.sotenshopclient.data.response.paging.CategoryDataSource
-import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.data.response.shopping.paging.CategoryDataSource
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 import javax.inject.Inject
 
 class PagingRepositoryImpl @Inject constructor(

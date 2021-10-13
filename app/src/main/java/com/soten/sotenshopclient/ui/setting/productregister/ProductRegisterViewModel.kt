@@ -9,7 +9,7 @@ import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_ID
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.firebase.FirebaseRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
-import com.soten.sotenshopclient.data.request.product.ProductRegistrationRequest
+import com.soten.sotenshopclient.data.request.shopping.product.ProductRegistrationRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject

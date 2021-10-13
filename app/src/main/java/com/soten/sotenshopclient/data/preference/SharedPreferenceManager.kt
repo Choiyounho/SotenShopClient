@@ -8,16 +8,16 @@ import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_EM
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_ID
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_NAME
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_PASSWORD
-import com.soten.sotenshopclient.data.request.auth.SignInRequest
-import com.soten.sotenshopclient.data.response.auth.SignInResponse
+import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
+import com.soten.sotenshopclient.data.response.shopping.auth.SignInResponse
 import javax.inject.Inject
 
 class SharedPreferenceManager @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) {
 
-    fun getString(key: String): String? =
-        sharedPreferences.getString(key, null)
+    fun getString(key: String): String =
+        sharedPreferences.getString(key, "null")!!
 
     private fun putString(key: String, value: String?) =
         sharedPreferences.edit { putString(key, value) }

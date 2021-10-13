@@ -9,7 +9,7 @@ import coil.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.soten.sotenshopclient.R
-import com.soten.sotenshopclient.data.response.product.ProductResponse
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 import com.soten.sotenshopclient.databinding.ItemProductBinding
 
 class ProductAdapter(

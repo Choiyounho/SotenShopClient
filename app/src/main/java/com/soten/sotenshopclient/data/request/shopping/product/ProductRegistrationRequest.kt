@@ -1,4 +1,4 @@
-package com.soten.sotenshopclient.data.request.product
+package com.soten.sotenshopclient.data.request.shopping.product
 
 data class ProductRegistrationRequest(
     val name: String,

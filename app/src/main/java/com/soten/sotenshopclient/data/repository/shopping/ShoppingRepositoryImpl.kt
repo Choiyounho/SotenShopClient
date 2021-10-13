@@ -1,35 +1,33 @@
 package com.soten.sotenshopclient.data.repository.shopping
 
 import com.soten.sotenshopclient.data.api.ShoppingApi
-import com.soten.sotenshopclient.data.request.auth.SignInRequest
-import com.soten.sotenshopclient.data.request.auth.SignUpRequest
-import com.soten.sotenshopclient.data.request.product.ProductRegistrationRequest
-import com.soten.sotenshopclient.data.response.auth.SignInResponse
-import com.soten.sotenshopclient.data.response.common.ApiResponse
-import com.soten.sotenshopclient.data.response.paging.json.ProductPagingJson
-import com.soten.sotenshopclient.data.response.product.ProductResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
+import com.soten.sotenshopclient.data.request.shopping.auth.SignUpRequest
+import com.soten.sotenshopclient.data.request.shopping.product.ProductRegistrationRequest
+import com.soten.sotenshopclient.data.response.shopping.auth.SignInResponse
+import com.soten.sotenshopclient.data.response.shopping.ShoppingApiResponse
+import com.soten.sotenshopclient.data.response.shopping.paging.json.ProductPagingJson
+import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 
 class ShoppingRepositoryImpl(private val shoppingApi: ShoppingApi) : ShoppingRepository {
 
-    override suspend fun getAllProduct(): ApiResponse<List<ProductResponse>> {
+    override suspend fun getAllProduct(): ShoppingApiResponse<List<ProductResponse>> {
         return shoppingApi.getAllProduct()
     }
 
-    override suspend fun signUp(signUpRequest: SignUpRequest): ApiResponse<Void> {
+    override suspend fun signUp(signUpRequest: SignUpRequest): ShoppingApiResponse<Void> {
         return shoppingApi.signUp(signUpRequest)
     }
 
-    override suspend fun signIn(signInRequest: SignInRequest): ApiResponse<SignInResponse> {
+    override suspend fun signIn(signInRequest: SignInRequest): ShoppingApiResponse<SignInResponse> {
         return shoppingApi.signIn(signInRequest)
     }
 
-    override suspend fun registerProduct(request: ProductRegistrationRequest): ApiResponse<ProductResponse> {
+    override suspend fun registerProduct(request: ProductRegistrationRequest): ShoppingApiResponse<ProductResponse> {
         return shoppingApi.registerProduct(request)
     }
 
-    override suspend fun getProductById(id: Int): ApiResponse<ProductResponse> {
+    override suspend fun getProductById(id: Int): ShoppingApiResponse<ProductResponse> {
         return shoppingApi.getProductById(id)
     }
 
