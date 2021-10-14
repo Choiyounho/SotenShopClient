@@ -1,5 +1,6 @@
 package com.soten.sotenshopclient.ui.category.productlist
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope

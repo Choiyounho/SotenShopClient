@@ -76,17 +76,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             while (viewLifecycleOwner.lifecycleScope.isActive) {
                 delay(BANNER_AUTO_SCROLL_TIME)
                 viewModel.value.getBannerCurrentPosition()?.let {
-                    viewModel.value.setBannerCurrentPosition(it.plus(NEXT_POSITION))
-                    Log.d(TAG, it.toString())
+                    viewModel.value.setBannerCurrentPosition(it.plus(NEXT_POSITION) % 3)
                 }
             }
         }
     }
 
     companion object {
-        private const val TAG = "HomeFragment"
-
-        private const val BANNER_AUTO_SCROLL_TIME = 3000L
+        private const val BANNER_AUTO_SCROLL_TIME = 10000L
         private const val NEXT_POSITION = 1
 
         const val KEY_PRODUCT_ID = "KEY_PRODUCT_ID"

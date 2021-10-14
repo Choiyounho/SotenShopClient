@@ -21,7 +21,7 @@ class ProductListViewModel @Inject constructor(
     val categoryLiveData: LiveData<CategoryState> get() = _categoryLiveData
 
     fun fetchProductLiveData(): LiveData<PagingData<ProductResponse>> {
-        return pagingRepository.getPagingData(categoryLiveData.value?.category
+        return pagingRepository.getCategoryPagingData(categoryLiveData.value?.category
             ?: CategoryState.NORMAL.category)
             .cachedIn(viewModelScope)
     }

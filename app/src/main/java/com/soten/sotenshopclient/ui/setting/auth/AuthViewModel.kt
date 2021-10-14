@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_CARD_NAME
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_EMAIL
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_NAME
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_PASSWORD
@@ -30,16 +31,12 @@ class AuthViewModel @Inject constructor(
     val authNotice: LiveData<String> get() = _authNotice
 
     init {
-        if (sharedPreferenceManager.getString(KEY_USER_EMAIL) != null
-            && sharedPreferenceManager.getString(KEY_USER_PASSWORD) != null
-        ) {
-            signIn(
-                SignInRequest(
-                    sharedPreferenceManager.getString(KEY_USER_EMAIL)!!,
-                    sharedPreferenceManager.getString(KEY_USER_PASSWORD)!!
-                )
+        signIn(
+            SignInRequest(
+                sharedPreferenceManager.getString(KEY_USER_EMAIL),
+                sharedPreferenceManager.getString(KEY_USER_PASSWORD)
             )
-        }
+        )
     }
 
     fun setSignUpState() {
@@ -122,11 +119,12 @@ class AuthViewModel @Inject constructor(
             else -> isAuthNotice(IS_NOT_VALID).not()
         }
 
-    fun getUserName(): String? {
-        if (sharedPreferenceManager.getString(KEY_USER_NAME) == null) {
-            _userStateLiveData.value = UserState.NORMAL
-        }
+    fun getUserName(): String {
         return sharedPreferenceManager.getString(KEY_USER_NAME)
+    }
+
+    fun getUserCardName(): String {
+        return sharedPreferenceManager.getString(KEY_CARD_NAME)
     }
 
     companion object {

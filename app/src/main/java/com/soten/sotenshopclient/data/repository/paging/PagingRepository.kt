@@ -6,6 +6,8 @@ import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
 
 interface PagingRepository {
 
-    fun getPagingData(categoryId: Int): LiveData<PagingData<ProductResponse>>
+    fun getCategoryPagingData(categoryId: Int): LiveData<PagingData<ProductResponse>>
+
+    fun getSearchPagingData(keyword: String): LiveData<PagingData<ProductResponse>>
 
 }

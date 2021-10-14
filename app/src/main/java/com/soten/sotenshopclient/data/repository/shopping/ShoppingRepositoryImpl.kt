@@ -1,6 +1,7 @@
 package com.soten.sotenshopclient.data.repository.shopping
 
 import com.soten.sotenshopclient.data.api.ShoppingApi
+import com.soten.sotenshopclient.data.request.shopping.auth.CardNameUpdateRequest
 import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.shopping.auth.SignUpRequest
 import com.soten.sotenshopclient.data.request.shopping.product.ProductRegistrationRequest
@@ -35,4 +36,11 @@ class ShoppingRepositoryImpl(private val shoppingApi: ShoppingApi) : ShoppingRep
         return shoppingApi.getAllProductByCategoryId(categoryId, page)
     }
 
+    override suspend fun registerCard(request: CardNameUpdateRequest): ShoppingApiResponse<Void> {
+        return shoppingApi.registerCard(request)
+    }
+
+    override suspend fun search(keyword: String, page: Int): ProductPagingJson {
+        return shoppingApi.search(keyword, page)
+    }
 }

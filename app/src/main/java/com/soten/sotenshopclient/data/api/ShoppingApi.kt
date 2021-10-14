@@ -1,5 +1,6 @@
 package com.soten.sotenshopclient.data.api
 
+import com.soten.sotenshopclient.data.request.shopping.auth.CardNameUpdateRequest
 import com.soten.sotenshopclient.data.response.shopping.paging.json.ProductPagingJson
 import com.soten.sotenshopclient.data.request.shopping.auth.SignInRequest
 import com.soten.sotenshopclient.data.request.shopping.auth.SignUpRequest
@@ -22,18 +23,29 @@ interface ShoppingApi {
 
     @POST("register/products/")
     suspend fun registerProduct(
-        @Body request: ProductRegistrationRequest
+        @Body request: ProductRegistrationRequest,
     ): ShoppingApiResponse<ProductResponse>
 
     @GET("products/{id}")
     suspend fun getProductById(
-        @Path("id") id: Int
+        @Path("id") id: Int,
     ): ShoppingApiResponse<ProductResponse>
 
     @GET("product/category/{categoryId}")
     suspend fun getAllProductByCategoryId(
         @Path("categoryId") categoryId: Int,
-        @Query("pageNumber") page: Int
+        @Query("pageNumber") page: Int,
+    ): ProductPagingJson
+
+    @PATCH("register/card")
+    suspend fun registerCard(
+        @Body request: CardNameUpdateRequest,
+    ): ShoppingApiResponse<Void>
+
+    @GET("products/search")
+    suspend fun search(
+        @Query("keyword") keyword: String,
+        @Query("pageNumber") page: Int,
     ): ProductPagingJson
 
 }

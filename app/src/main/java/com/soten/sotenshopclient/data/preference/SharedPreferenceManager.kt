@@ -2,6 +2,7 @@ package com.soten.sotenshopclient.data.preference
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_CARD_NAME
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_REFRESH_TOKEN
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_TOKEN
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_EMAIL
@@ -35,6 +36,7 @@ class SharedPreferenceManager @Inject constructor(
         putInt(KEY_USER_ID, response.userId)
         putString(KEY_USER_EMAIL, signInRequest.email)
         putString(KEY_USER_PASSWORD, signInRequest.password)
+        putString(KEY_CARD_NAME, response.cardName)
     }
 
     fun resetUserInfo() {
