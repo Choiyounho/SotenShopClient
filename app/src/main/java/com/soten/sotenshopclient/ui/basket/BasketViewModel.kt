@@ -7,9 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soten.sotenshopclient.BuildConfig
 import com.soten.sotenshopclient.data.db.entity.BasketEntity
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_CARD_NAME
+import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_PAYMENT_TOKEN
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
 import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepository
+import com.soten.sotenshopclient.data.request.payment.PaymentRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +21,7 @@ import javax.inject.Inject
 class BasketViewModel @Inject constructor(
     private val productBasketRepository: ProductBasketRepository,
     private val paymentRepository: PaymentRepository,
-    private val sharedPreferenceManager: SharedPreferenceManager
+    private val sharedPreferenceManager: SharedPreferenceManager,
 ) : ViewModel() {
 
     private val _basketProductListLiveData = MutableLiveData<List<BasketEntity>>()
@@ -38,6 +41,8 @@ class BasketViewModel @Inject constructor(
         _basketProductListLiveData.value = productBasketRepository.getAllBasketProduct()
         fetchAllProductSum()
         _productCountLiveData.value = _basketProductListLiveData.value?.size
+
+        sharedPreferenceManager.putString(KEY_CARD_NAME, "sotenhdcard")
     }
 
     private fun fetchAllProductSum() = viewModelScope.launch {
@@ -87,6 +92,19 @@ class BasketViewModel @Inject constructor(
 
             if (response.code == SUCCESS_CODE) {
                 val paymentToken = response.response.accessToken
+                sharedPreferenceManager.putString(KEY_PAYMENT_TOKEN, paymentToken)
+
+                // 결제
+                val pr = PaymentRequest(
+                    customerUid = sharedPreferenceManager.getString(KEY_CARD_NAME),
+                    merchantUid = "SotenShop${(Int.MIN_VALUE..Int.MAX_VALUE).random()}",
+                    amount = costLiveData.value!!,
+                    name = "소텐샵 테스트"
+                )
+
+                val payMap = pr.toHashMap()
+
+                paymentRepository.payment(paymentToken, payMap)
             }
         } catch (e: Exception) {
             Log.d(TAG, e.message!!)
@@ -99,4 +117,10 @@ class BasketViewModel @Inject constructor(
         const val SUCCESS_CODE = 0
     }
 
+    /*
+    *   @Field("customer_uid") customer_uid: String, 카드이름
+        @Field("merchant_uid") merchant_uid: String, 결제아이디
+        @Field("amount") amount: Int,
+        @Field("name") name: String,
+    * */
 }

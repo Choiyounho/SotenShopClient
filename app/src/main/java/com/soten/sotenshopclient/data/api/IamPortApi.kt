@@ -22,18 +22,15 @@ interface IamPortApi {
     suspend fun registerCard(
         @Path("customer_uid") customerUid: String,
         @Header("Authorization") token: String?,
-        @FieldMap billingKey: HashMap<String, String>
+        @FieldMap billingKey: HashMap<String, String>,
     ): PaymentResponse<BillingKeyResponse>
 
     @FormUrlEncoded
     @POST("subscribe/payments/again")
     @Headers("Content-Type: application/x-www-form-urlencoded")
     suspend fun payment(
-        @Field("customer_uid") customer_uid: String,
         @Header("Authorization") token: String?,
-        @Field("merchant_uid") merchant_uid: String,
-        @Field("amount") amount: Int,
-        @Field("name") name: String,
+        @FieldMap receiptMap: HashMap<String, Any>,
     ): PaymentResponse<Receipt>
 
 }
