@@ -18,4 +18,7 @@ interface BasketDao {
     @Query("UPDATE basket SET count=:plusCount WHERE id=:entityId")
     suspend fun updateCount(entityId: Int, plusCount: Int)
 
+    @Query("DELETE FROM basket")
+    suspend fun deleteAll()
+
 }

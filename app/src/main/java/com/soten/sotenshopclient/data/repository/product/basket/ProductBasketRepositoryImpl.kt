@@ -26,4 +26,7 @@ class ProductBasketRepositoryImpl @Inject constructor(
         return basketDao.updateCount(entityId, plusCount)
     }
 
+    override suspend fun deleteAll() {
+        return basketDao.deleteAll()
+    }
 }

@@ -41,7 +41,6 @@ class BasketViewModel @Inject constructor(
         _basketProductListLiveData.value = productBasketRepository.getAllBasketProduct()
         fetchAllProductSum()
         _productCountLiveData.value = _basketProductListLiveData.value?.size
-
     }
 
     private fun fetchAllProductSum() = viewModelScope.launch {
@@ -94,16 +93,20 @@ class BasketViewModel @Inject constructor(
                 sharedPreferenceManager.putString(KEY_PAYMENT_TOKEN, paymentToken)
 
                 // 결제
-                val pr = PaymentRequest(
+                val paymentRequest = PaymentRequest(
                     customerUid = sharedPreferenceManager.getString(KEY_CARD_NAME),
                     merchantUid = "SotenShop${(Int.MIN_VALUE..Int.MAX_VALUE).random()}",
                     amount = costLiveData.value!!,
                     name = "소텐샵 테스트"
                 )
 
-                val payMap = pr.toHashMap()
+                val payMap = paymentRequest.toHashMap()
+                val paymentResponse = paymentRepository.payment(paymentToken, payMap)
 
-                paymentRepository.payment(paymentToken, payMap)
+                if (paymentResponse.code == SUCCESS_CODE) {
+                    productBasketRepository.deleteAll()
+                    fetchLikedProductList()
+                }
             }
         } catch (e: Exception) {
             Log.d(TAG, e.message!!)

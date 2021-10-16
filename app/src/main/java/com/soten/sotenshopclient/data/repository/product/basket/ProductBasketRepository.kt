@@ -14,4 +14,6 @@ interface ProductBasketRepository {
 
     suspend fun updateCount(entityId: Int, plusCount: Int)
 
+    suspend fun deleteAll()
+
 }
