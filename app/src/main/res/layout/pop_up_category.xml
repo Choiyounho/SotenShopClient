@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.soten.sotenshopclient.ui.setting.productregister.ProductRegisterViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/tShirtLayout"
+            android:onClick="@{() -> viewModel.onTShirtSelect()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_t_shirt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="T-Shirt"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/hoodieLayout"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> viewModel.onHoodieSelect()}"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_hoodie" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="@string/hoodie"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/jeansLayout"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> viewModel.onJeansSelect()}"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_jeans" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="@string/jeans"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/shortsLayout"
+            android:onClick="@{() -> viewModel.onShortsSelect()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_shorts" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="@string/shorts"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sweaterLayout"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> viewModel.onSweaterSelect()}"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_sweater" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="@string/sweater"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tracksLayout"
+            android:onClick="@{() -> viewModel.onTracksSelect()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_tracks" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="8dp"
+                android:text="@string/tracks"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

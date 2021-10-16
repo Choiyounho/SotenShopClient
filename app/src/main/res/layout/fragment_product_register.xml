@@ -40,32 +40,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="name"
-                android:text="name" />
+                android:layout_marginHorizontal="16dp"
+                android:hint="title" />
 
             <EditText
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:hint="des"
-                android:text="description" />
+                android:hint="description" />
 
             <EditText
                 android:id="@+id/priceText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:hint="price"
-                android:text="1000" />
+                android:hint="price" />
 
-            <EditText
+            <TextView
                 android:id="@+id/categoryIdText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="catefory"
-                android:text="0" />
+                android:layout_marginHorizontal="16dp"
+                android:hint="category" />
 
             <Button
                 android:id="@+id/productAdd"

@@ -1,5 +1,7 @@
 package com.soten.sotenshopclient.ui.setting.productregister
 
+import android.view.ViewGroup
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.PhotoListAdapter
 import com.soten.sotenshopclient.data.request.shopping.product.ProductRegistrationRequest
 import com.soten.sotenshopclient.databinding.FragmentProductRegisterBinding
+import com.soten.sotenshopclient.databinding.PopUpCategoryBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,6 +33,8 @@ class ProductRegisterFragment : BaseFragment<FragmentProductRegisterBinding>() {
     private val photoListAdapter by lazy { PhotoListAdapter() }
 
     private var imageList = mutableListOf<Media>()
+
+    private lateinit var popUpWindow: PopupWindow
 
     private val pickleLauncher = Pickle.register(this, object : Pickle.Callback {
         override fun onResult(result: ArrayList<Media>) {
@@ -52,13 +57,27 @@ class ProductRegisterFragment : BaseFragment<FragmentProductRegisterBinding>() {
             val productRegistrationRequest = ProductRegistrationRequest(
                 name = nameText.text.toString(),
                 description = descriptionText.text.toString(),
-                categoryId = categoryIdText.text.toString().toInt(),
+                categoryId = viewModel.getCategory(),
                 price = priceText.text.toString().toInt(),
                 userId = viewModel.getUserId()
             )
 
             lifecycleScope.launch {
                 viewModel.registerProduct(productRegistrationRequest, imageList)
+            }
+        }
+
+        categoryIdText.setOnClickListener {
+            val popUpBinding = PopUpCategoryBinding.inflate(layoutInflater)
+
+            popUpBinding.viewModel = viewModel
+
+            popUpWindow = PopupWindow(popUpBinding.root,
+                categoryIdText.width,
+                ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                elevation = 8f
+                isOutsideTouchable = true
+                showAsDropDown(categoryIdText)
             }
         }
     }
@@ -76,15 +95,26 @@ class ProductRegisterFragment : BaseFragment<FragmentProductRegisterBinding>() {
         viewModel.productRegisterState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 ProductRegisterState.NORMAL -> Unit
-                ProductRegisterState.LOADING -> registerLoading(dialog)
+                ProductRegisterState.LOADING -> showLoadingDialogFragment(dialog)
                 ProductRegisterState.SUCCESS -> registerSuccess(dialog)
                 ProductRegisterState.FAIL -> registerFail(dialog)
+                ProductRegisterState.NOT_SELECT -> nonSelect(dialog)
                 else -> Unit
             }
         }
+
+        viewModel.categoryLiveData.observe(viewLifecycleOwner) {
+            binding.categoryIdText.text = it.title
+            popUpWindow.dismiss()
+        }
     }
 
-    private fun registerLoading(dialog: LoadingDialogFragment) {
+    private fun nonSelect(dialog: LoadingDialogFragment) {
+        dialog.dismiss()
+        Toast.makeText(context, "카테고리를 선택해주세요", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoadingDialogFragment(dialog: LoadingDialogFragment) {
         dialog.show(parentFragmentManager, "")
     }
 

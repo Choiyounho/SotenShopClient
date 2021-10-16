@@ -35,4 +35,10 @@
     <string name="card_name_input">카드 이름을 입력해주세요</string>
 
     <string name="form">%s 값으로 검색한 값이 없습니다</string>
+    <string name="t_shirt">T-Shirt</string>
+    <string name="hoodie">Hoodie</string>
+    <string name="jeans">Jeans</string>
+    <string name="shorts">Shorts</string>
+    <string name="sweater">Sweater</string>
+    <string name="tracks">Tracks</string>
 </resources>

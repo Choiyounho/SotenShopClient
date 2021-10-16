@@ -57,7 +57,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
         cardNameText.visibility = View.GONE
         cardImage.visibility = View.GONE
-        addProductButton.visibility = View.GONE
+//        addProductButton.visibility = View.GONE
         welcomeText.visibility = View.GONE
     }
 

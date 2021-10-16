@@ -5,6 +5,7 @@ enum class ProductRegisterState {
     NORMAL,
     LOADING,
     SUCCESS,
-    FAIL
+    FAIL,
+    NOT_SELECT
 
 }
