@@ -17,6 +17,7 @@ class SearchDataSource @Inject constructor(
         val page = params.key ?: 0
         return try {
             val response = shoppingApi.search(keyword, page).content
+
             LoadResult.Page(
                 response!!,
                 prevKey = null,

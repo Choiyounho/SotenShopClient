@@ -42,7 +42,6 @@ class BasketViewModel @Inject constructor(
         fetchAllProductSum()
         _productCountLiveData.value = _basketProductListLiveData.value?.size
 
-        sharedPreferenceManager.putString(KEY_CARD_NAME, "sotenhdcard")
     }
 
     private fun fetchAllProductSum() = viewModelScope.launch {
@@ -117,10 +116,4 @@ class BasketViewModel @Inject constructor(
         const val SUCCESS_CODE = 0
     }
 
-    /*
-    *   @Field("customer_uid") customer_uid: String, 카드이름
-        @Field("merchant_uid") merchant_uid: String, 결제아이디
-        @Field("amount") amount: Int,
-        @Field("name") name: String,
-    * */
 }

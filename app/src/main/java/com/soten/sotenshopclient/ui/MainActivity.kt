@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigationBasketFragment -> hideNavView()
                 R.id.navigationLikeFragment -> hideNavView()
                 R.id.navigationCardRegisterFragment -> hideNavView()
+                R.id.navigationSearchFragment -> hideNavView()
+                R.id.navigationSearchResultFragment -> hideNavView()
                 else -> binding.navView.visibility = View.VISIBLE
             }
         }

@@ -1,14 +1,12 @@
 package com.soten.sotenshopclient.data.repository.paging
 
 import androidx.lifecycle.LiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
+import androidx.paging.*
 import com.soten.sotenshopclient.data.api.ShoppingApi
 import com.soten.sotenshopclient.data.response.shopping.paging.CategoryDataSource
 import com.soten.sotenshopclient.data.response.shopping.paging.SearchDataSource
 import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PagingRepositoryImpl @Inject constructor(
@@ -29,7 +27,7 @@ class PagingRepositoryImpl @Inject constructor(
         ).liveData
     }
 
-    override fun getSearchPagingData(keyword: String): LiveData<PagingData<ProductResponse>> {
+    override fun getSearchPagingData(keyword: String): Flow<PagingData<ProductResponse>> {
         val pagingData = SearchDataSource(keyword, shoppingApi)
 
         return Pager(
@@ -40,7 +38,7 @@ class PagingRepositoryImpl @Inject constructor(
             pagingSourceFactory = {
                 pagingData
             }
-        ).liveData
+        ).flow
     }
 
 }

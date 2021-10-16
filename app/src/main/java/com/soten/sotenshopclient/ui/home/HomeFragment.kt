@@ -59,6 +59,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.settingImage.setOnClickListener {
             findNavController().navigate(R.id.navigationSettingFragment)
         }
+
+        binding.searchTextBox.setOnClickListener {
+            findNavController().navigate(R.id.navigationSearchFragment)
+        }
     }
 
     override fun observeData() {

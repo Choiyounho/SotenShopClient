@@ -65,5 +65,14 @@
         android:id="@+id/navigationCardRegisterFragment"
         android:name="com.soten.sotenshopclient.ui.setting.cardregister.CardRegisterFragment"
         android:label="CardRegisterFragment" />
+    <fragment
+        android:id="@+id/navigationSearchFragment"
+        android:name="com.soten.sotenshopclient.ui.home.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/navigationSearchResultFragment"
+        android:name="com.soten.sotenshopclient.ui.home.search.searchresult.SearchResultFragment"
+        android:label="SearchResultFragment" />
+
 
 </navigation>

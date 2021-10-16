@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.soten.sotenshopclient.R
 import com.soten.sotenshopclient.adapater.ProductBasketEntityAdapter
-import com.soten.sotenshopclient.data.request.payment.PaymentRequest
 import com.soten.sotenshopclient.databinding.FragmentBasketBinding
 import com.soten.sotenshopclient.ui.base.BaseFragment
 import com.soten.sotenshopclient.ui.home.HomeFragment

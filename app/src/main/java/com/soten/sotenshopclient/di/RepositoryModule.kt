@@ -4,6 +4,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.soten.sotenshopclient.data.api.IamPortApi
 import com.soten.sotenshopclient.data.api.ShoppingApi
 import com.soten.sotenshopclient.data.db.dao.BasketDao
+import com.soten.sotenshopclient.data.db.dao.HistoryDao
 import com.soten.sotenshopclient.data.db.dao.LikedDao
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.firebase.FirebaseRepository
@@ -14,6 +15,8 @@ import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRep
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepositoryImpl
 import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepository
 import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepositoryImpl
+import com.soten.sotenshopclient.data.repository.product.search.SearchRepository
+import com.soten.sotenshopclient.data.repository.product.search.SearchRepositoryImpl
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepositoryImpl
 import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepository
@@ -65,6 +68,12 @@ object RepositoryModule {
     @Singleton
     fun providePaymentRepository(iamPortApi: IamPortApi): PaymentRepository {
         return PaymentRepositoryImpl(iamPortApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHistoryRepository(historyDao: HistoryDao): SearchRepository {
+        return SearchRepositoryImpl(historyDao)
     }
 
 }

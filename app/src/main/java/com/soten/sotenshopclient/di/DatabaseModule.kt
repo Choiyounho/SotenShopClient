@@ -35,12 +35,17 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, ShoppingDataBase::class.java, DB_NAME).build()
+        Room.databaseBuilder(context, ShoppingDataBase::class.java, DB_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     fun provideLikedDao(shoppingDataBase: ShoppingDataBase) = shoppingDataBase.LikedDao()
 
     @Provides
     fun provideBasketDao(shoppingDataBase: ShoppingDataBase) = shoppingDataBase.basketDao()
+
+    @Provides
+    fun provideHistoryDao(shoppingDataBase: ShoppingDataBase) = shoppingDataBase.historyDao()
 
 }

@@ -4,7 +4,7 @@ import com.charlezz.pickle.data.entity.Media
 import com.google.firebase.storage.FirebaseStorage
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_USER_ID
 import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
-import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegisterProduct
+import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegister
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                         try {
                             val userId = sharedPreferenceManager.getInt(KEY_USER_ID)
                             val fileName =
-                                "${userId}-${createdTimeForRegisterProduct()}-image${index}.png"
+                                "${userId}-${createdTimeForRegister()}-image${index}.png"
                             storage.reference.child("product/${userId}").child(fileName)
                                 .putFile(media.getUri())
                                 .await()

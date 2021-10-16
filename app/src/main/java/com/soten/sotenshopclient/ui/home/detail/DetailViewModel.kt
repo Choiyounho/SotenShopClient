@@ -9,7 +9,7 @@ import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRep
 import com.soten.sotenshopclient.data.repository.product.liked.ProductLikedRepository
 import com.soten.sotenshopclient.data.repository.shopping.ShoppingRepository
 import com.soten.sotenshopclient.data.response.shopping.product.ProductResponse
-import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegisterProduct
+import com.soten.sotenshopclient.util.TimeFormatUtil.createdTimeForRegister
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
@@ -60,7 +60,7 @@ class DetailViewModel @AssistedInject constructor(
         basketRepository.insertProduct(BasketEntity(
             id = id,
             product = productLiveData.value!!.toModel(),
-            createdAt = createdTimeForRegisterProduct(),
+            createdAt = createdTimeForRegister(),
         ))
     }
 
@@ -68,7 +68,7 @@ class DetailViewModel @AssistedInject constructor(
         val likedEntity = LikedEntity(
             id = id,
             product = _productLiveData.value!!.toModel(),
-            createdAt = createdTimeForRegisterProduct()
+            createdAt = createdTimeForRegister()
         )
         if (_toggleLiveData.value == true) {
             _toggleLiveData.value = false
