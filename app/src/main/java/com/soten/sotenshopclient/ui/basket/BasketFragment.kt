@@ -1,5 +1,7 @@
 package com.soten.sotenshopclient.ui.basket
 
+import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -39,12 +41,11 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
     }
 
     override fun initViews() {
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = basketViewModel
+
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
-        }
-
-        binding.checkoutButton.setOnClickListener {
-            basketViewModel.paymentGetToken()
         }
     }
 
@@ -56,14 +57,6 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
     override fun observeData() {
         basketViewModel.basketProductListLiveData.observe(viewLifecycleOwner) {
             basketAdapter.submitList(it)
-        }
-
-        basketViewModel.costLiveData.observe(viewLifecycleOwner) {
-            binding.priceSumText.text = "$it 원"
-        }
-
-        basketViewModel.productCountLiveData.observe(viewLifecycleOwner) {
-            binding.productCountText.text = "($it items)"
         }
     }
 

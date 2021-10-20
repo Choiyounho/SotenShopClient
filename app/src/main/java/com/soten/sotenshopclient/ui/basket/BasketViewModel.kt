@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import com.soten.sotenshopclient.BuildConfig
 import com.soten.sotenshopclient.data.db.entity.BasketEntity
 import com.soten.sotenshopclient.data.preference.SharedPreferenceKey.KEY_CARD_NAME
@@ -13,6 +14,8 @@ import com.soten.sotenshopclient.data.preference.SharedPreferenceManager
 import com.soten.sotenshopclient.data.repository.product.basket.ProductBasketRepository
 import com.soten.sotenshopclient.data.repository.shopping.payment.PaymentRepository
 import com.soten.sotenshopclient.data.request.payment.PaymentRequest
+import com.soten.sotenshopclient.databinding.FragmentBasketBinding
+import com.soten.sotenshopclient.ui.setting.productregister.ProductRegisterFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -82,7 +85,7 @@ class BasketViewModel @Inject constructor(
         liveData.value = liveData.value?.minus(1)
     }
 
-    fun paymentGetToken() = viewModelScope.launch {
+    fun onPayment() = viewModelScope.launch {
         try {
             val response = paymentRepository.getToken(
                 impKey = BuildConfig.IMP_KEY,

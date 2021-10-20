@@ -1,5 +1,7 @@
 package com.soten.sotenshopclient.ui.category.productlist
 
+import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -31,6 +33,17 @@ class ProductListFragment : BaseFragment<FragmentProductListBinding>() {
         )
         findNavController().navigate(R.id.navigationDetailFragment, bundle)
     } }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                productListViewModel.onNormalStateButtonClick()
+                findNavController().navigateUp()
+            }
+        })
+    }
 
     override fun initViews() {
         binding.backButton.setOnClickListener {

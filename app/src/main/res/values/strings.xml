@@ -41,4 +41,7 @@
     <string name="shorts">Shorts</string>
     <string name="sweater">Sweater</string>
     <string name="tracks">Tracks</string>
+
+    <string name="formCost">%s 원</string>
+    <string name="formCount">(%s items)</string>
 </resources>

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.soten.sotenshopclient.ui.basket.BasketViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text='@{@string/formCount(Integer.toString(viewModel.productCountLiveData))}'
                 android:gravity="end"
                 tools:text="(3 items)" />
 
@@ -89,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
+                android:text='@{@string/formCost(Integer.toString(viewModel.costLiveData))}'
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 tools:text="25000" />
@@ -103,6 +111,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/background_ratio_16"
             android:text="@string/checkout"
+            android:onClick="@{() -> viewModel.onPayment()}"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent" />
